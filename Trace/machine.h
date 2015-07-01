@@ -13,11 +13,7 @@ public:
     Machine();
     ~Machine();
 
-    void addServoAxe(char name, ServoAxe axe);
-    void addUnipolarAxe(char name, UnipolarAxe axe);
-    void addBipolarAxe(char name, BipolarAxe axe);
-
-    void removeAllAxes();
+    void addAxe(uint8_t code, Axe axe);
 
 private:
     Axe axes[NB_AXES];    
@@ -55,7 +51,8 @@ class UnipolarAxe : public Axe
 public:
     UnipolarAxe(uint8_t pin);
     void move(float value);
-    bool isShiftRegistered = true;  
+    uint8_t getOutput();
+    bool isShiftRegistered = true;
 private:
     uint8_t lastPos;
 };
@@ -65,7 +62,8 @@ class BipolarAxe : public Axe
 public:
     BipolarAxe(uint8_t pin);
     void move(float value);
-    bool isShiftRegistered = true;  
+    uint8_t getOutput();
+    bool isShiftRegistered = true;
 private:
     uint8_t lastPos;
 };
