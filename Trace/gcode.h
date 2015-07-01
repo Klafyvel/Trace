@@ -10,8 +10,10 @@
 #define Z 2
 #define I 3
 #define J 4
+#define F 5
 
-#define NB_ARGS 5
+#define NB_ARGS 6
+#define NB_AXES 3
 
 typedef struct Command
 {
