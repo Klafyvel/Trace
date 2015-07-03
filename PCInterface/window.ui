@@ -32,9 +32,6 @@
             <property name="text">
              <string>Pas de fichier</string>
             </property>
-            <property name="buddy">
-             <cstring>btn_file</cstring>
-            </property>
            </widget>
           </item>
           <item>
