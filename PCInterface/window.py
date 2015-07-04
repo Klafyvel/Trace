@@ -19,10 +19,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_serial_ports_list.clicked.connect(self.list_serials)
         self.btn_connect.clicked.connect(self.connect_serial_manager)
         self.btn_command.clicked.connect(self.send_user_cmd)
+        self.btn_file.clicked.connect(self.choose_file)
 
     @pyqtSlot()
     def choose_file(self):
-        pass
+        self.file = QFileDialog.getOpenFileName(self, "Sélectionner un fichier", "")[0]
+        self.filename.setText(self.file)
     @pyqtSlot()
     def list_serials(self):
         l = serial_ports()
