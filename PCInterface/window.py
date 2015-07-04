@@ -1,6 +1,7 @@
 import serial
 
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 from user_interface import Ui_MainWindow
@@ -48,6 +49,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.serial_ports_list.setEnabled(False)
             self.btn_serial_ports_list.setEnabled(False)
             self.btn_connect.setText("Déconnecter")
+            self.serial_monitor.setText("<p style='color:blue;font-weight:bold;'>Serial port opened.</p>")
         except serial.serialutil.SerialException:
             QMessageBox.critical(self, "Port série", "Le port série n'a pas pu être ouvert.")
 
@@ -58,4 +60,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         txt = self.command_edit.text()
         self.serial.write(bytes(txt, encoding="utf-8"))
         self.command_edit.setText("")
-        self.serial_monitor.append("User> {}".format(txt))
+        self.serial_monitor.moveCursor(QTextCursor.End)
+        self.serial_monitor.insertHtml("\n<br /><span style='color:yellow;'>User: {}</span>".format(txt))
+        self.serial_monitor.moveCursor(QTextCursor.End)

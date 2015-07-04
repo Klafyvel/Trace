@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>traceIcon.png</normaloff>traceIcon.png</iconset>
+    <normaloff>traceIcon.svg</normaloff>traceIcon.svg</iconset>
   </property>
   <property name="tabShape">
    <enum>QTabWidget::Triangular</enum>
@@ -338,8 +338,10 @@ Zéro</string>
            </sizepolicy>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color:black;
-color: yellow;</string>
+           <string notr="true">background-color:black;</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
           </property>
           <property name="html">
            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
