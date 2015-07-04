@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
+    <width>785</width>
     <height>675</height>
    </rect>
   </property>
@@ -176,13 +176,20 @@
            </widget>
            <widget class="QWidget" name="tab_2">
             <attribute name="title">
-             <string>Paramètres du fichier</string>
+             <string>Paramètres des fichiers</string>
             </attribute>
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
               <widget class="QPushButton" name="btn_preprocessor">
                <property name="text">
                 <string>Utiliser le préprocesseur sur le fichier</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="use_log">
+               <property name="text">
+                <string>Sauvegarder la communication série dans le fichier trace.log</string>
                </property>
               </widget>
              </item>

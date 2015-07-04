@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(750, 675)
+        MainWindow.resize(785, 675)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("traceIcon.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -96,6 +96,9 @@ class Ui_MainWindow(object):
         self.btn_preprocessor = QtWidgets.QPushButton(self.tab_2)
         self.btn_preprocessor.setObjectName("btn_preprocessor")
         self.verticalLayout_5.addWidget(self.btn_preprocessor)
+        self.use_log = QtWidgets.QCheckBox(self.tab_2)
+        self.use_log.setObjectName("use_log")
+        self.verticalLayout_5.addWidget(self.use_log)
         self.tabWidget.addTab(self.tab_2, "")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
@@ -227,7 +230,8 @@ class Ui_MainWindow(object):
         self.btn_connect.setText(_translate("MainWindow", "Connecter"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_serie), _translate("MainWindow", "Port série"))
         self.btn_preprocessor.setText(_translate("MainWindow", "Utiliser le préprocesseur sur le fichier"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Paramètres du fichier"))
+        self.use_log.setText(_translate("MainWindow", "Sauvegarder la communication série dans le fichier trace.log"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Paramètres des fichiers"))
         self.groupBox_3.setTitle(_translate("MainWindow", "Position dans le plan"))
         self.btn_y_minus.setText(_translate("MainWindow", "Y-"))
         self.btn_x_minus.setText(_translate("MainWindow", "X-"))
