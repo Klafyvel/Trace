@@ -17,6 +17,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.btn_serial_ports_list.clicked.connect(self.list_serials)
         self.btn_connect.clicked.connect(self.connect_serial_manager)
+        self.btn_command.clicked.connect(self.send_user_cmd)
 
     @pyqtSlot()
     def choose_file(self):
@@ -48,5 +49,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.btn_serial_ports_list.setEnabled(False)
             self.btn_connect.setText("Déconnecter")
         except serial.serialutil.SerialException:
-            QMessageBox.warning(self, "Port série", "Le port série n'a pas pu être ouvert.")
-    
+            QMessageBox.critical(self, "Port série", "Le port série n'a pas pu être ouvert.")
+
+    def send_user_cmd(self):
+        if not self.serial.isOpen():
+            QMessageBox.critical(self, "Port série", "Veuillez ouvrir un port série.")
+            return
+        txt = self.command_edit.text()
+        self.serial.write(bytes(txt, encoding="utf-8"))
+        self.command_edit.setText("")
+        self.serial_monitor.append("User> {}".format(txt))
