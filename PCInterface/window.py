@@ -60,7 +60,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return
         self.serial.port = self.serial_ports_list.currentText()
         self.serial.baudrate = int(self.baudrate.currentText())
-        self.serial.timeout = self.timeout_read.value() / 1000
+        self.serial.timeout = self.timeout_read.value() / 1000 # serial needs timeout in seconds
         try:
             self.serial.open()
             QMessageBox.information(self, "Port série", "Le port {} a été ouvert à {} bauds".format(self.serial.port, str(self.serial.baudrate)))
