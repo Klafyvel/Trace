@@ -25,14 +25,14 @@ void ServoAxe::move(float value)
         this->servo.write(this->down);
 }
 
-UnipolarAxe::UnipolarAxe(long stepTime, int stepSize)
+StepperAxe::StepperAxe(long stepTime, int stepSize)
 {
     this->lastTime = millis();
     this->stepTime = stepTime;
     this->stepSize = stepSize;
     this->remainingDistance = 0;
 }
-void UnipolarAxe::move(float value)
+void StepperAxe::move(float value)
 {
     if(value == 0 && this->remainingDistance == 0)
         return;
@@ -42,17 +42,17 @@ void UnipolarAxe::move(float value)
         this->lastPos = 1;
         this->lastTime = millis();
     }
-    if(millis() - this->lastTime >= this->stepTime){
+    else if(millis() - this->lastTime >= this->stepTime){
         this->remainingDistance -= this->stepSize;
         this->lastPos = (this->lastPos * 2) % 16 + (this->lastPos == 8); // Challenge ! find something uglier !
         this->lastTime = millis();
     }
 }
-uint8_t UnipolarAxe::getOutput()
+uint8_t StepperAxe::getOutput()
 {
     return this->lastPos;
 }
-bool UnipolarAxe::currentMoveFinished() const
+bool StepperAxe::currentMoveFinished() const
 {
     if (this->remainingDistance <= 0)
         return true;

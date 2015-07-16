@@ -45,7 +45,7 @@ class ServoAxe : public Axe
 {
 public:
     ServoAxe(uint8_t pin, uint8_t up, uint8_t down);
-    void move(float value);
+   void move(float value);
     bool currentMoveFinished() const;
     const bool isShiftRegistered = false;
 private:
@@ -54,23 +54,11 @@ private:
     Servo servo;
 };
 
-class UnipolarAxe : public Axe
+class StepperAxe : public Axe
 {
 public:
-    UnipolarAxe(long stepTime, int stepSize);
+    StepperAxe(long stepTime, int stepSize);
     void move(float value=0);
-    uint8_t getOutput();
-    bool currentMoveFinished() const;
-    const bool isShiftRegistered = true;
-private:
-    uint8_t lastPos;
-};
-
-class BipolarAxe : public Axe
-{
-public:
-    BipolarAxe(long stepTime);
-    void move(float value);
     uint8_t getOutput();
     bool currentMoveFinished() const;
     const bool isShiftRegistered = true;

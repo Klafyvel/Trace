@@ -1,5 +1,3 @@
-#include <Wire.h>
-
 #include "LiquidCrystal.h"
 #include "Servo.h"
 
@@ -37,6 +35,8 @@ void setup()
     myMenu.addItem(&testServo, "Test du servo");
     myMenu.addItem(&testGCode, "Test gcode");
     myMenu.addItem(&testUnipolar, "Test unipolaire");
+
+    testUnipolar();
 }
 void loop()
 {
@@ -113,12 +113,11 @@ void testUnipolar()
 {
     lcd.clear();
     lcd.print("Test axe unipolaire");
-    Axe axe = UnipolarAxe(20, 1);
+    StepperAxe axe = StepperAxe(20, 5);
     axe.move(42);
     while(!axe.currentMoveFinished())
     {
         uint8_t o = axe.getOutput();
         axe.move();
-        dvar(o);
     }
 }
