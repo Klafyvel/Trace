@@ -7,6 +7,7 @@
 #include "settings.h"
 #include "communication.h"
 #include "gcode.h"
+#include "machine.h"
 
 LiquidCrystal lcd(11,10,5,4,3,2);
 
@@ -35,6 +36,7 @@ void setup()
     myMenu.addItem(&reglageServo, "Reglage du servo");
     myMenu.addItem(&testServo, "Test du servo");
     myMenu.addItem(&testGCode, "Test gcode");
+    myMenu.addItem(&testUnipolar, "Test unipolaire");
 }
 void loop()
 {
@@ -106,4 +108,17 @@ void testGCode()
     lcd.clear();
     lcd.print("Test du gcode...");
     parse("G01 Z-1.000000 F100.0(Penetrate)");
+}
+void testUnipolar()
+{
+    lcd.clear();
+    lcd.print("Test axe unipolaire");
+    Axe axe = UnipolarAxe(20, 1);
+    axe.move(42);
+    while(!axe.currentMoveFinished())
+    {
+        uint8_t o = axe.getOutput();
+        axe.move();
+        dvar(o);
+    }
 }

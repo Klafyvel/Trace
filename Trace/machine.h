@@ -7,31 +7,38 @@
 
 #include "communication.h"
 
+#include "gcode.h"
+
+class Axe
+{
+public:
+    Axe() {};
+    virtual ~Axe() {};
+
+    virtual void move(float value=0) {};
+    virtual bool currentMoveFinished() const {};
+    
+    virtual uint8_t getOutput() {};
+
+    bool isShiftRegistered;
+
+protected:
+    long lastTime;
+    long stepTime;
+    int stepSize;
+    int remainingDistance;
+};
+
 class Machine
 {
 public:
     Machine();
     ~Machine();
 
-    void addAxe(uint8_t code, Axe axe);
+    void addAxe(uint8_t code, Axe axe); // code defined in "gcode.h"
 
 private:
     Axe axes[NB_AXES];    
-};
-
-class Axe
-{
-public:
-    Axe();
-    ~Axe();
-
-    virtual void move(float value);
-    bool isShiftRegistered;
-
-protected:
-    long lastTime;
-    long stepTime;
-
 };
 
 class ServoAxe : public Axe
@@ -39,7 +46,8 @@ class ServoAxe : public Axe
 public:
     ServoAxe(uint8_t pin, uint8_t up, uint8_t down);
     void move(float value);
-    bool isShiftRegistered = false;
+    bool currentMoveFinished() const;
+    const bool isShiftRegistered = false;
 private:
     uint8_t up;
     uint8_t down;
@@ -49,10 +57,11 @@ private:
 class UnipolarAxe : public Axe
 {
 public:
-    UnipolarAxe(uint8_t pin);
-    void move(float value);
+    UnipolarAxe(long stepTime, int stepSize);
+    void move(float value=0);
     uint8_t getOutput();
-    bool isShiftRegistered = true;
+    bool currentMoveFinished() const;
+    const bool isShiftRegistered = true;
 private:
     uint8_t lastPos;
 };
@@ -60,10 +69,11 @@ private:
 class BipolarAxe : public Axe
 {
 public:
-    BipolarAxe(uint8_t pin);
+    BipolarAxe(long stepTime);
     void move(float value);
     uint8_t getOutput();
-    bool isShiftRegistered = true;
+    bool currentMoveFinished() const;
+    const bool isShiftRegistered = true;
 private:
     uint8_t lastPos;
 };
