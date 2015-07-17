@@ -1,0 +1,3 @@
+[submodule "Trace/ShiftRegister"]
+	path = Trace/ShiftRegister
+	url = https://github.com/Klafyvel/ShiftRegister.git
