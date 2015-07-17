@@ -5,6 +5,7 @@
 
 #ifdef DEBUG
 #define dvar(var) Serial.print(#var);Serial.print(" : ");Serial.println(var)
+#define dvarbin(var) Serial.print(#var);Serial.print(" : ");Serial.println(var, BIN)
 #define dinfo(info) Serial.println(info)
 #else
 #define dvar(var)
