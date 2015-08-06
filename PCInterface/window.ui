@@ -58,7 +58,21 @@
              </layout>
             </item>
             <item>
-             <widget class="QGraphicsView" name="fileview"/>
+             <widget class="QCheckBox" name="display_draw_steps">
+              <property name="text">
+               <string>Afficher les étapes</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGraphicsView" name="fileview">
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+              <property name="dragMode">
+               <enum>QGraphicsView::ScrollHandDrag</enum>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_2">
@@ -263,7 +277,8 @@
                   <item>
                    <widget class="QPushButton" name="btn_set_origin_plan">
                     <property name="text">
-                     <string>Position Zéro</string>
+                     <string>Définir la 
+Position Zéro</string>
                     </property>
                    </widget>
                   </item>
@@ -278,6 +293,12 @@
                 <widget class="QGroupBox" name="groupBox_4">
                  <property name="title">
                   <string>Axe Z</string>
+                 </property>
+                 <property name="flat">
+                  <bool>false</bool>
+                 </property>
+                 <property name="checkable">
+                  <bool>false</bool>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_7">
                   <item>
@@ -334,7 +355,7 @@
                   </sizepolicy>
                  </property>
                  <property name="text">
-                  <string>Position
+                  <string>Aller à la position
 Zéro</string>
                  </property>
                  <property name="flat">

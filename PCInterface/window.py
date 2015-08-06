@@ -1,5 +1,7 @@
 import serial
 
+from math import asin, acos, sqrt, pi
+
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -7,6 +9,8 @@ from PyQt5.QtWidgets import *
 from user_interface import Ui_MainWindow
 
 from serial_list import serial_ports
+
+from gcodeParser import parse_instr
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -20,6 +24,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_connect.clicked.connect(self.connect_serial_manager)
         self.btn_command.clicked.connect(self.send_user_cmd)
         self.btn_file.clicked.connect(self.choose_file)
+        self.btn_go_to_zero.clicked.connect(self.go_to_zero)
+        self.display_draw_steps.clicked.connect(self.draw_file)
 
         self.serial_timer = QTimer()
         self.serial_timer.timeout.connect(self.check_serial_communication)
@@ -39,6 +45,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.file = QFileDialog.getOpenFileName(self, "Sélectionner un fichier", "")[0]
         if self.file:
             self.filename.setText(self.file)
+            self.draw_file()
     @pyqtSlot()
     def list_serials(self):
         l = serial_ports()
@@ -82,6 +89,87 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.serial.write(bytes(txt, encoding="utf-8"))
         self.command_edit.setText("")
         self.print(txt, self.USER_PRINT)
+
+    @pyqtSlot()
+    def go_to_zero(self):
+        self.command_edit.setText("G28")
+        self.send_user_cmd()
+
+    @pyqtSlot()
+    def draw_file(self):
+        if not self.file:
+            # QMessageBox.critical(self, "Aperçu de fichier", "Veuillez ouvrir un fichier.")
+            return
+        gcode = ''
+        with open(self.file, 'r') as f:
+            gcode = f.read()
+        sc = QGraphicsScene(self.fileview)
+        current_pos = [0,0,0]
+        for n,t in enumerate(parse_instr(gcode)):
+            if t['name'] is not 'G':continue
+
+            x, y, z= current_pos
+
+            if self.display_draw_steps.isChecked():
+                txt = sc.addText(str(n))
+                txt.setPos(x,y)
+                txt.setFlags(QGraphicsItem.ItemIsFocusable | QGraphicsItem.ItemIsMovable |
+                       QGraphicsItem.ItemIsSelectable | txt.flags())
+            if 'X' in t['args'].keys():
+                x = t['args']['X']
+            if 'Y' in t['args'].keys():
+                y = t['args']['Y']
+            if 'Z' in t['args'].keys():
+                z = t['args']['Z']
+            p = QPen(QColor((z <= 0)*255, 0, (z > 0)*255))
+            if t['value'] in (0, 1):
+                sc.addLine(current_pos[0], current_pos[1], x, y, pen=p)
+            elif t['value'] in (2, 3):
+                i,j,k, = current_pos
+                if 'I' in t['args'].keys():
+                    i = t['args']['I']
+                if 'J' in t['args'].keys():
+                    j = t['args']['J']
+                if 'K' in t['args'].keys():
+                    k = t['args']['K']
+                pp = QPainterPath()
+                h = sqrt(i**2 + j**2)
+                center_x = current_pos[0] + i
+                center_y = current_pos[1] + j
+
+                clockwise = False
+                if t['value'] == 2:
+                    clockwise = True
+
+                direction_end = -1
+                direction_begin = -1
+                if y-center_y != 0:
+                    direction_end = -(y-center_y) / abs(y-center_y)
+                if current_pos[1]-center_y != 0:
+                    direction_begin = -(current_pos[1] - center_y) / abs(current_pos[1] - center_y)
+
+                try:
+                    start_angle = direction_begin * acos((current_pos[0] - center_x)/h)/2/pi * 360
+                except ValueError as e:
+                    print(e)
+                    print(locals())
+                try:
+                    end_angle = direction_end * acos((x - center_x)/h)/2/pi * 360
+                except ValueError as e:
+                    print(e)
+                    print(locals())
+
+                pp.moveTo(current_pos[0], current_pos[1])
+                if clockwise:
+                    pp.arcTo(center_x - h, center_y - h, h*2, h*2, start_angle, end_angle - start_angle - 360)
+                else:
+                    pp.arcTo(center_x - h, center_y - h, h*2, h*2, start_angle, end_angle - start_angle)
+                sc.addPath(pp, p)
+            current_pos = x,y,z
+
+        self.fileview.setScene(sc)
+                
+
 
     USER_PRINT = 0 
     INFO_PRINT = 1
