@@ -57,7 +57,7 @@ Command parseCom(char* input, int begin)
 }
 float* parseArgs(char* input, int begin)
 {
-    float returned[NB_ARGS];
+    float returned[NB_ARGS] = {0};
     char c;
     int i=begin;
     do

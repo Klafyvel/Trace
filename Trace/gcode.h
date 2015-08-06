@@ -5,12 +5,16 @@
 
 #include "communication.h"
 
+// Axes
+
 #define X 0
 #define Y 1
 #define Z 2
 #define I 3
 #define J 4
 #define F 5
+
+// Commands settings
 
 #define NB_ARGS 6
 #define NB_AXES 3
