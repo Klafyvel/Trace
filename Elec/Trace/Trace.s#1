@@ -1637,6 +1637,7 @@ Source: tuxgr_12x2_r2.pdf</description>
 <sheets>
 <sheet>
 <plain>
+<text x="218.44" y="20.32" size="1.778" layer="91">Klafyvel</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>

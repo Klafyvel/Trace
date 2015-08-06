@@ -1521,7 +1521,6 @@ Source: tuxgr_12x2_r2.pdf</description>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
-<part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="P+6" library="supply1" deviceset="+5V" device=""/>
 <part name="P+7" library="supply1" deviceset="+5V" device=""/>
 <part name="U2" library="74HC595" deviceset="SN74HC595N" device=""/>
@@ -1567,7 +1566,6 @@ Source: tuxgr_12x2_r2.pdf</description>
 <instance part="GND2" gate="1" x="172.72" y="88.9"/>
 <instance part="GND3" gate="1" x="172.72" y="129.54"/>
 <instance part="GND4" gate="1" x="91.44" y="127"/>
-<instance part="GND5" gate="1" x="68.58" y="106.68"/>
 <instance part="P+6" gate="1" x="165.1" y="170.18"/>
 <instance part="P+7" gate="1" x="165.1" y="127"/>
 <instance part="U2" gate="A" x="111.76" y="66.04"/>
@@ -1744,13 +1742,6 @@ Source: tuxgr_12x2_r2.pdf</description>
 </segment>
 </net>
 <net name="GND" class="0">
-<segment>
-<pinref part="PCB1" gate="G$1" pin="GND"/>
-<wire x1="60.96" y1="104.14" x2="66.04" y2="104.14" width="0.1524" layer="91"/>
-<pinref part="GND5" gate="1" pin="GND"/>
-<wire x1="66.04" y1="104.14" x2="66.04" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="109.22" x2="68.58" y2="109.22" width="0.1524" layer="91"/>
-</segment>
 <segment>
 <pinref part="GND4" gate="1" pin="GND"/>
 <pinref part="U1" gate="A" pin="GND"/>
@@ -1992,22 +1983,22 @@ Source: tuxgr_12x2_r2.pdf</description>
 <wire x1="213.36" y1="76.2" x2="213.36" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="213.36" y1="83.82" x2="167.64" y2="83.82" width="0.1524" layer="91"/>
 <junction x="213.36" y="76.2"/>
-<wire x1="167.64" y1="83.82" x2="73.66" y2="83.82" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="83.82" x2="73.66" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="167.64" y1="83.82" x2="78.74" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="83.82" x2="78.74" y2="68.58" width="0.1524" layer="91"/>
 <wire x1="167.64" y1="76.2" x2="167.64" y2="83.82" width="0.1524" layer="91"/>
 <junction x="167.64" y="76.2"/>
 <junction x="167.64" y="83.82"/>
 <pinref part="PCB1" gate="G$1" pin="2"/>
-<wire x1="60.96" y1="68.58" x2="73.66" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="68.58" x2="78.74" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$31" class="0">
 <segment>
 <pinref part="U1" gate="A" pin="QH_2"/>
-<wire x1="129.54" y1="134.62" x2="129.54" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="129.54" y1="86.36" x2="81.28" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="134.62" x2="129.54" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="81.28" x2="81.28" y2="81.28" width="0.1524" layer="91"/>
 <pinref part="U2" gate="A" pin="SER"/>
-<wire x1="81.28" y1="86.36" x2="81.28" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="81.28" x2="81.28" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="81.28" y1="55.88" x2="93.98" y2="55.88" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -2015,37 +2006,37 @@ Source: tuxgr_12x2_r2.pdf</description>
 <segment>
 <pinref part="U1" gate="A" pin="SER"/>
 <wire x1="93.98" y1="137.16" x2="88.9" y2="137.16" width="0.1524" layer="91"/>
-<wire x1="88.9" y1="137.16" x2="88.9" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="88.9" y1="88.9" x2="71.12" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="71.12" y1="88.9" x2="71.12" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="137.16" x2="88.9" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="86.36" x2="76.2" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="86.36" x2="76.2" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="PCB1" gate="G$1" pin="4"/>
-<wire x1="71.12" y1="73.66" x2="60.96" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="73.66" x2="60.96" y2="73.66" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$32" class="0">
 <segment>
 <pinref part="U1" gate="A" pin="RCLK"/>
 <wire x1="93.98" y1="139.7" x2="86.36" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="86.36" y1="139.7" x2="86.36" y2="91.44" width="0.1524" layer="91"/>
-<wire x1="86.36" y1="91.44" x2="68.58" y2="91.44" width="0.1524" layer="91"/>
-<wire x1="68.58" y1="91.44" x2="68.58" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="139.7" x2="86.36" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="88.9" x2="73.66" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="88.9" x2="73.66" y2="76.2" width="0.1524" layer="91"/>
 <pinref part="PCB1" gate="G$1" pin="~5"/>
-<wire x1="68.58" y1="76.2" x2="60.96" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="76.2" x2="60.96" y2="76.2" width="0.1524" layer="91"/>
 <pinref part="U2" gate="A" pin="RCLK"/>
-<wire x1="93.98" y1="58.42" x2="68.58" y2="58.42" width="0.1524" layer="91"/>
-<wire x1="68.58" y1="58.42" x2="68.58" y2="76.2" width="0.1524" layer="91"/>
-<junction x="68.58" y="76.2"/>
+<wire x1="93.98" y1="58.42" x2="73.66" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="58.42" x2="73.66" y2="76.2" width="0.1524" layer="91"/>
+<junction x="73.66" y="76.2"/>
 </segment>
 </net>
 <net name="N$33" class="0">
 <segment>
 <pinref part="U1" gate="A" pin="SRCLK"/>
 <wire x1="93.98" y1="142.24" x2="83.82" y2="142.24" width="0.1524" layer="91"/>
-<wire x1="83.82" y1="142.24" x2="83.82" y2="93.98" width="0.1524" layer="91"/>
-<wire x1="83.82" y1="93.98" x2="66.04" y2="93.98" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="93.98" x2="66.04" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="142.24" x2="83.82" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="91.44" x2="71.12" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="91.44" x2="71.12" y2="78.74" width="0.1524" layer="91"/>
 <pinref part="PCB1" gate="G$1" pin="~6"/>
-<wire x1="66.04" y1="78.74" x2="63.5" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="78.74" x2="63.5" y2="78.74" width="0.1524" layer="91"/>
 <pinref part="U2" gate="A" pin="SRCLK"/>
 <wire x1="63.5" y1="78.74" x2="60.96" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="93.98" y1="60.96" x2="63.5" y2="60.96" width="0.1524" layer="91"/>
@@ -2072,6 +2063,46 @@ Source: tuxgr_12x2_r2.pdf</description>
 <pinref part="D5" gate="1" pin="C"/>
 <pinref part="BP_OK" gate="SW" pin="P1"/>
 <wire x1="195.58" y1="76.2" x2="203.2" y2="76.2" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$37" class="0">
+<segment>
+<pinref part="DIS1" gate="G$1" pin="RS"/>
+<wire x1="30.48" y1="144.78" x2="30.48" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="132.08" x2="63.5" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="132.08" x2="63.5" y2="101.6" width="0.1524" layer="91"/>
+<pinref part="PCB1" gate="G$1" pin="13"/>
+<wire x1="63.5" y1="101.6" x2="60.96" y2="101.6" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$38" class="0">
+<segment>
+<pinref part="PCB1" gate="G$1" pin="12"/>
+<wire x1="60.96" y1="99.06" x2="66.04" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="99.06" x2="66.04" y2="134.62" width="0.1524" layer="91"/>
+<pinref part="DIS1" gate="G$1" pin="E"/>
+<wire x1="66.04" y1="134.62" x2="35.56" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="35.56" y1="134.62" x2="35.56" y2="144.78" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$39" class="0">
+<segment>
+<pinref part="DIS1" gate="G$1" pin="D4"/>
+<wire x1="48.26" y1="144.78" x2="48.26" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="48.26" y1="137.16" x2="68.58" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="137.16" x2="68.58" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="PCB1" gate="G$1" pin="~11"/>
+<wire x1="68.58" y1="96.52" x2="60.96" y2="96.52" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$40" class="0">
+<segment>
+<pinref part="PCB1" gate="G$1" pin="~10"/>
+<wire x1="60.96" y1="93.98" x2="71.12" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="93.98" x2="71.12" y2="139.7" width="0.1524" layer="91"/>
+<pinref part="DIS1" gate="G$1" pin="D5"/>
+<wire x1="71.12" y1="139.7" x2="50.8" y2="139.7" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="139.7" x2="50.8" y2="144.78" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

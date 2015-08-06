@@ -1545,6 +1545,7 @@ Source: tuxgr_12x2_r2.pdf</description>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
 <part name="DIS1" library="display-lcd" deviceset="TUXGR_16X2_R2" device=""/>
+<part name="GND5" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1590,6 +1591,7 @@ Source: tuxgr_12x2_r2.pdf</description>
 <instance part="GND7" gate="1" x="91.44" y="45.72"/>
 <instance part="GND8" gate="1" x="91.44" y="147.32"/>
 <instance part="DIS1" gate="G$1" x="40.64" y="157.48"/>
+<instance part="GND5" gate="1" x="7.62" y="139.7"/>
 </instances>
 <busses>
 </busses>
@@ -1780,6 +1782,32 @@ Source: tuxgr_12x2_r2.pdf</description>
 <pinref part="U1" gate="A" pin="~OE"/>
 <pinref part="GND8" gate="1" pin="GND"/>
 <wire x1="93.98" y1="149.86" x2="91.44" y2="149.86" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="DIS1" gate="G$1" pin="D3"/>
+<wire x1="45.72" y1="147.32" x2="45.72" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="142.24" x2="43.18" y2="142.24" width="0.1524" layer="91"/>
+<pinref part="DIS1" gate="G$1" pin="GND"/>
+<wire x1="43.18" y1="142.24" x2="40.64" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="142.24" x2="38.1" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="38.1" y1="142.24" x2="33.02" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="142.24" x2="22.86" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="142.24" x2="22.86" y2="147.32" width="0.1524" layer="91"/>
+<pinref part="DIS1" gate="G$1" pin="D2"/>
+<wire x1="43.18" y1="147.32" x2="43.18" y2="142.24" width="0.1524" layer="91"/>
+<junction x="43.18" y="142.24"/>
+<pinref part="DIS1" gate="G$1" pin="D1"/>
+<wire x1="40.64" y1="147.32" x2="40.64" y2="142.24" width="0.1524" layer="91"/>
+<junction x="40.64" y="142.24"/>
+<pinref part="DIS1" gate="G$1" pin="D0"/>
+<wire x1="38.1" y1="147.32" x2="38.1" y2="142.24" width="0.1524" layer="91"/>
+<junction x="38.1" y="142.24"/>
+<pinref part="DIS1" gate="G$1" pin="R/W"/>
+<wire x1="33.02" y1="147.32" x2="33.02" y2="142.24" width="0.1524" layer="91"/>
+<junction x="33.02" y="142.24"/>
+<pinref part="GND5" gate="1" pin="GND"/>
+<wire x1="22.86" y1="142.24" x2="7.62" y2="142.24" width="0.1524" layer="91"/>
+<junction x="22.86" y="142.24"/>
 </segment>
 </net>
 <net name="N$9" class="0">

@@ -1496,6 +1496,43 @@ Source: tuxgr_12x2_r2.pdf</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="docu-dummy">
+<description>Dummy symbols</description>
+<packages>
+</packages>
+<symbols>
+<symbol name="POTI">
+<wire x1="-0.762" y1="-3.81" x2="0" y2="-3.81" width="0.254" layer="94"/>
+<wire x1="0.762" y1="3.81" x2="0" y2="3.81" width="0.254" layer="94"/>
+<wire x1="-0.762" y1="3.81" x2="-0.762" y2="-3.81" width="0.254" layer="94"/>
+<wire x1="0.762" y1="-3.81" x2="0.762" y2="3.81" width="0.254" layer="94"/>
+<wire x1="2.54" y1="0" x2="1.651" y2="0" width="0.1524" layer="94"/>
+<wire x1="1.651" y1="0" x2="-2.54" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="-1.778" y2="1.524" width="0.1524" layer="94"/>
+<wire x1="-1.778" y1="1.524" x2="-1.27" y2="2.286" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="-1.27" y2="2.286" width="0.1524" layer="94"/>
+<wire x1="0" y1="3.81" x2="0" y2="5.08" width="0.1524" layer="94"/>
+<wire x1="0" y1="3.81" x2="-0.762" y2="3.81" width="0.254" layer="94"/>
+<wire x1="0" y1="-5.08" x2="0" y2="-3.81" width="0.1524" layer="94"/>
+<wire x1="0" y1="-3.81" x2="0.762" y2="-3.81" width="0.254" layer="94"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="POT" prefix="P">
+<description>&lt;b&gt;POTENTIOMENTER&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="POTI" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -1547,6 +1584,30 @@ Source: tuxgr_12x2_r2.pdf</description>
 <part name="DIS1" library="display-lcd" deviceset="TUXGR_16X2_R2" device=""/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="P+9" library="supply1" deviceset="+5V" device=""/>
+<part name="POT_Z" library="docu-dummy" deviceset="POT" device=""/>
+<part name="P+10" library="supply1" deviceset="+5V" device=""/>
+<part name="GND9" library="supply1" deviceset="GND" device=""/>
+<part name="GND10" library="supply1" deviceset="GND" device=""/>
+<part name="D8" library="diode" deviceset="1N4004" device=""/>
+<part name="D9" library="diode" deviceset="1N4004" device=""/>
+<part name="D10" library="diode" deviceset="1N4004" device=""/>
+<part name="D11" library="diode" deviceset="1N4004" device=""/>
+<part name="D12" library="diode" deviceset="1N4004" device=""/>
+<part name="D13" library="diode" deviceset="1N4004" device=""/>
+<part name="D14" library="diode" deviceset="1N4004" device=""/>
+<part name="D15" library="diode" deviceset="1N4004" device=""/>
+<part name="P+11" library="supply1" deviceset="+12V" device=""/>
+<part name="GND14" library="supply1" deviceset="GND" device=""/>
+<part name="GND11" library="supply1" deviceset="GND" device=""/>
+<part name="P+12" library="supply1" deviceset="+12V" device=""/>
+<part name="D16" library="diode" deviceset="1N4004" device=""/>
+<part name="D17" library="diode" deviceset="1N4004" device=""/>
+<part name="D18" library="diode" deviceset="1N4004" device=""/>
+<part name="D19" library="diode" deviceset="1N4004" device=""/>
+<part name="D20" library="diode" deviceset="1N4004" device=""/>
+<part name="D21" library="diode" deviceset="1N4004" device=""/>
+<part name="D22" library="diode" deviceset="1N4004" device=""/>
+<part name="D23" library="diode" deviceset="1N4004" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1562,7 +1623,7 @@ Source: tuxgr_12x2_r2.pdf</description>
 <instance part="P+1" gate="1" x="172.72" y="121.92"/>
 <instance part="P+2" gate="1" x="172.72" y="162.56"/>
 <instance part="P+3" gate="1" x="88.9" y="160.02"/>
-<instance part="P+4" gate="1" x="7.62" y="93.98"/>
+<instance part="P+4" gate="1" x="7.62" y="88.9"/>
 <instance part="P+5" gate="1" x="68.58" y="38.1"/>
 <instance part="GND1" gate="1" x="76.2" y="25.4"/>
 <instance part="GND2" gate="1" x="172.72" y="88.9"/>
@@ -1571,8 +1632,8 @@ Source: tuxgr_12x2_r2.pdf</description>
 <instance part="P+6" gate="1" x="165.1" y="170.18"/>
 <instance part="P+7" gate="1" x="165.1" y="127"/>
 <instance part="U2" gate="A" x="111.76" y="66.04"/>
-<instance part="MOT_X" gate="G$1" x="231.14" y="142.24" rot="R270"/>
-<instance part="MOT_Y" gate="G$1" x="231.14" y="104.14" rot="R270"/>
+<instance part="MOT_X" gate="G$1" x="241.3" y="142.24" rot="R270"/>
+<instance part="MOT_Y" gate="G$1" x="241.3" y="104.14" rot="R270"/>
 <instance part="BP_X+" gate="SW" x="162.56" y="76.2"/>
 <instance part="BP_X-" gate="SW" x="162.56" y="66.04"/>
 <instance part="BP_Y+" gate="SW" x="162.56" y="55.88"/>
@@ -1594,6 +1655,30 @@ Source: tuxgr_12x2_r2.pdf</description>
 <instance part="DIS1" gate="G$1" x="40.64" y="157.48"/>
 <instance part="GND5" gate="1" x="7.62" y="139.7"/>
 <instance part="P+9" gate="1" x="7.62" y="152.4"/>
+<instance part="POT_Z" gate="G$1" x="30.48" y="33.02" rot="R90"/>
+<instance part="P+10" gate="1" x="20.32" y="38.1"/>
+<instance part="GND9" gate="1" x="38.1" y="27.94"/>
+<instance part="GND10" gate="1" x="7.62" y="93.98"/>
+<instance part="D8" gate="1" x="213.36" y="152.4" rot="R90"/>
+<instance part="D9" gate="1" x="218.44" y="152.4" rot="R90"/>
+<instance part="D10" gate="1" x="223.52" y="152.4" rot="R90"/>
+<instance part="D11" gate="1" x="228.6" y="152.4" rot="R90"/>
+<instance part="D12" gate="1" x="213.36" y="129.54" rot="R90"/>
+<instance part="D13" gate="1" x="218.44" y="129.54" rot="R90"/>
+<instance part="D14" gate="1" x="223.52" y="129.54" rot="R90"/>
+<instance part="D15" gate="1" x="228.6" y="129.54" rot="R90"/>
+<instance part="P+11" gate="1" x="213.36" y="167.64"/>
+<instance part="GND14" gate="1" x="233.68" y="124.46"/>
+<instance part="GND11" gate="1" x="233.68" y="88.9"/>
+<instance part="P+12" gate="1" x="213.36" y="121.92"/>
+<instance part="D16" gate="1" x="213.36" y="111.76" rot="R90"/>
+<instance part="D17" gate="1" x="218.44" y="111.76" rot="R90"/>
+<instance part="D18" gate="1" x="223.52" y="111.76" rot="R90"/>
+<instance part="D19" gate="1" x="228.6" y="111.76" rot="R90"/>
+<instance part="D20" gate="1" x="213.36" y="93.98" rot="R90"/>
+<instance part="D21" gate="1" x="218.44" y="93.98" rot="R90"/>
+<instance part="D22" gate="1" x="223.52" y="93.98" rot="R90"/>
+<instance part="D23" gate="1" x="228.6" y="93.98" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -1682,6 +1767,34 @@ Source: tuxgr_12x2_r2.pdf</description>
 <pinref part="IC2" gate="L298" pin="VCC"/>
 <wire x1="172.72" y1="119.38" x2="175.26" y2="119.38" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="D8" gate="1" pin="C"/>
+<pinref part="D9" gate="1" pin="C"/>
+<wire x1="213.36" y1="154.94" x2="218.44" y2="154.94" width="0.1524" layer="91"/>
+<pinref part="D10" gate="1" pin="C"/>
+<wire x1="218.44" y1="154.94" x2="223.52" y2="154.94" width="0.1524" layer="91"/>
+<junction x="218.44" y="154.94"/>
+<pinref part="D11" gate="1" pin="C"/>
+<wire x1="223.52" y1="154.94" x2="228.6" y2="154.94" width="0.1524" layer="91"/>
+<junction x="223.52" y="154.94"/>
+<pinref part="P+11" gate="1" pin="+12V"/>
+<wire x1="213.36" y1="165.1" x2="213.36" y2="154.94" width="0.1524" layer="91"/>
+<junction x="213.36" y="154.94"/>
+</segment>
+<segment>
+<pinref part="D16" gate="1" pin="C"/>
+<pinref part="D17" gate="1" pin="C"/>
+<wire x1="213.36" y1="114.3" x2="218.44" y2="114.3" width="0.1524" layer="91"/>
+<pinref part="D18" gate="1" pin="C"/>
+<wire x1="223.52" y1="114.3" x2="218.44" y2="114.3" width="0.1524" layer="91"/>
+<junction x="218.44" y="114.3"/>
+<pinref part="D19" gate="1" pin="C"/>
+<wire x1="228.6" y1="114.3" x2="223.52" y2="114.3" width="0.1524" layer="91"/>
+<junction x="223.52" y="114.3"/>
+<pinref part="P+12" gate="1" pin="+12V"/>
+<wire x1="213.36" y1="114.3" x2="213.36" y2="119.38" width="0.1524" layer="91"/>
+<junction x="213.36" y="114.3"/>
+</segment>
 </net>
 <net name="+5V" class="0">
 <segment>
@@ -1714,11 +1827,6 @@ Source: tuxgr_12x2_r2.pdf</description>
 <junction x="165.1" y="165.1"/>
 </segment>
 <segment>
-<pinref part="P+4" gate="1" pin="+5V"/>
-<pinref part="PCB1" gate="G$1" pin="VIN"/>
-<wire x1="7.62" y1="91.44" x2="12.7" y2="91.44" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="P+5" gate="1" pin="+5V"/>
 <pinref part="SERVO_Z" gate="G$1" pin="2"/>
 <wire x1="68.58" y1="35.56" x2="68.58" y2="30.48" width="0.1524" layer="91"/>
@@ -1749,6 +1857,17 @@ Source: tuxgr_12x2_r2.pdf</description>
 <wire x1="25.4" y1="144.78" x2="7.62" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="P+9" gate="1" pin="+5V"/>
 <wire x1="7.62" y1="144.78" x2="7.62" y2="149.86" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="P+10" gate="1" pin="+5V"/>
+<wire x1="20.32" y1="35.56" x2="20.32" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="20.32" y1="33.02" x2="25.4" y2="33.02" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="P+4" gate="1" pin="+5V"/>
+<pinref part="PCB1" gate="G$1" pin="VIN"/>
+<wire x1="7.62" y1="86.36" x2="12.7" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="86.36" x2="12.7" y2="91.44" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -1818,6 +1937,44 @@ Source: tuxgr_12x2_r2.pdf</description>
 <wire x1="22.86" y1="142.24" x2="7.62" y2="142.24" width="0.1524" layer="91"/>
 <junction x="22.86" y="142.24"/>
 </segment>
+<segment>
+<pinref part="GND9" gate="1" pin="GND"/>
+<wire x1="35.56" y1="33.02" x2="38.1" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="38.1" y1="33.02" x2="38.1" y2="30.48" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="PCB1" gate="G$1" pin="GND.."/>
+<pinref part="GND10" gate="1" pin="GND"/>
+<wire x1="12.7" y1="96.52" x2="7.62" y2="96.52" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="D12" gate="1" pin="A"/>
+<pinref part="D13" gate="1" pin="A"/>
+<wire x1="213.36" y1="127" x2="218.44" y2="127" width="0.1524" layer="91"/>
+<pinref part="D14" gate="1" pin="A"/>
+<wire x1="218.44" y1="127" x2="223.52" y2="127" width="0.1524" layer="91"/>
+<junction x="218.44" y="127"/>
+<pinref part="D15" gate="1" pin="A"/>
+<wire x1="223.52" y1="127" x2="233.68" y2="127" width="0.1524" layer="91"/>
+<junction x="223.52" y="127"/>
+<pinref part="GND14" gate="1" pin="GND"/>
+<junction x="233.68" y="127"/>
+<wire x1="233.68" y1="127" x2="228.6" y2="127" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND11" gate="1" pin="GND"/>
+<pinref part="D23" gate="1" pin="A"/>
+<wire x1="233.68" y1="91.44" x2="228.6" y2="91.44" width="0.1524" layer="91"/>
+<pinref part="D22" gate="1" pin="A"/>
+<wire x1="228.6" y1="91.44" x2="223.52" y2="91.44" width="0.1524" layer="91"/>
+<junction x="228.6" y="91.44"/>
+<pinref part="D21" gate="1" pin="A"/>
+<wire x1="223.52" y1="91.44" x2="218.44" y2="91.44" width="0.1524" layer="91"/>
+<junction x="223.52" y="91.44"/>
+<pinref part="D20" gate="1" pin="A"/>
+<wire x1="218.44" y1="91.44" x2="213.36" y2="91.44" width="0.1524" layer="91"/>
+<junction x="218.44" y="91.44"/>
+</segment>
 </net>
 <net name="N$9" class="0">
 <segment>
@@ -1832,27 +1989,51 @@ Source: tuxgr_12x2_r2.pdf</description>
 <pinref part="IC1" gate="L298" pin="OUT1"/>
 <pinref part="MOT_X" gate="G$1" pin="1"/>
 <wire x1="205.74" y1="144.78" x2="228.6" y2="144.78" width="0.1524" layer="91"/>
+<pinref part="D15" gate="1" pin="C"/>
+<wire x1="228.6" y1="144.78" x2="238.76" y2="144.78" width="0.1524" layer="91"/>
+<wire x1="228.6" y1="132.08" x2="228.6" y2="144.78" width="0.1524" layer="91"/>
+<junction x="228.6" y="144.78"/>
+<pinref part="D11" gate="1" pin="A"/>
+<wire x1="228.6" y1="144.78" x2="228.6" y2="149.86" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$11" class="0">
 <segment>
 <pinref part="IC1" gate="L298" pin="OUT2"/>
 <pinref part="MOT_X" gate="G$1" pin="2"/>
-<wire x1="205.74" y1="142.24" x2="228.6" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="142.24" x2="223.52" y2="142.24" width="0.1524" layer="91"/>
+<pinref part="D14" gate="1" pin="C"/>
+<wire x1="223.52" y1="142.24" x2="238.76" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="223.52" y1="132.08" x2="223.52" y2="142.24" width="0.1524" layer="91"/>
+<junction x="223.52" y="142.24"/>
+<pinref part="D10" gate="1" pin="A"/>
+<wire x1="223.52" y1="142.24" x2="223.52" y2="149.86" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$12" class="0">
 <segment>
 <pinref part="IC1" gate="L298" pin="OUT3"/>
 <pinref part="MOT_X" gate="G$1" pin="3"/>
-<wire x1="205.74" y1="139.7" x2="228.6" y2="139.7" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="139.7" x2="218.44" y2="139.7" width="0.1524" layer="91"/>
+<pinref part="D13" gate="1" pin="C"/>
+<wire x1="218.44" y1="139.7" x2="238.76" y2="139.7" width="0.1524" layer="91"/>
+<wire x1="218.44" y1="132.08" x2="218.44" y2="139.7" width="0.1524" layer="91"/>
+<junction x="218.44" y="139.7"/>
+<pinref part="D9" gate="1" pin="A"/>
+<wire x1="218.44" y1="139.7" x2="218.44" y2="149.86" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$13" class="0">
 <segment>
 <pinref part="IC1" gate="L298" pin="OUT4"/>
 <pinref part="MOT_X" gate="G$1" pin="4"/>
-<wire x1="205.74" y1="137.16" x2="228.6" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="137.16" x2="213.36" y2="137.16" width="0.1524" layer="91"/>
+<pinref part="D12" gate="1" pin="C"/>
+<wire x1="213.36" y1="137.16" x2="238.76" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="132.08" x2="213.36" y2="137.16" width="0.1524" layer="91"/>
+<junction x="213.36" y="137.16"/>
+<pinref part="D8" gate="1" pin="A"/>
+<wire x1="213.36" y1="137.16" x2="213.36" y2="149.86" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$14" class="0">
@@ -1860,27 +2041,51 @@ Source: tuxgr_12x2_r2.pdf</description>
 <pinref part="IC2" gate="L298" pin="OUT1"/>
 <pinref part="MOT_Y" gate="G$1" pin="1"/>
 <wire x1="205.74" y1="106.68" x2="228.6" y2="106.68" width="0.1524" layer="91"/>
+<pinref part="D23" gate="1" pin="C"/>
+<wire x1="228.6" y1="106.68" x2="238.76" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="228.6" y1="96.52" x2="228.6" y2="106.68" width="0.1524" layer="91"/>
+<junction x="228.6" y="106.68"/>
+<pinref part="D19" gate="1" pin="A"/>
+<wire x1="228.6" y1="106.68" x2="228.6" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$15" class="0">
 <segment>
 <pinref part="IC2" gate="L298" pin="OUT2"/>
 <pinref part="MOT_Y" gate="G$1" pin="2"/>
-<wire x1="205.74" y1="104.14" x2="228.6" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="104.14" x2="223.52" y2="104.14" width="0.1524" layer="91"/>
+<pinref part="D22" gate="1" pin="C"/>
+<wire x1="223.52" y1="104.14" x2="238.76" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="223.52" y1="96.52" x2="223.52" y2="104.14" width="0.1524" layer="91"/>
+<junction x="223.52" y="104.14"/>
+<pinref part="D18" gate="1" pin="A"/>
+<wire x1="223.52" y1="104.14" x2="223.52" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$16" class="0">
 <segment>
 <pinref part="IC2" gate="L298" pin="OUT3"/>
 <pinref part="MOT_Y" gate="G$1" pin="3"/>
-<wire x1="205.74" y1="101.6" x2="228.6" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="101.6" x2="218.44" y2="101.6" width="0.1524" layer="91"/>
+<pinref part="D21" gate="1" pin="C"/>
+<wire x1="218.44" y1="101.6" x2="238.76" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="218.44" y1="96.52" x2="218.44" y2="101.6" width="0.1524" layer="91"/>
+<junction x="218.44" y="101.6"/>
+<pinref part="D17" gate="1" pin="A"/>
+<wire x1="218.44" y1="101.6" x2="218.44" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$17" class="0">
 <segment>
 <pinref part="IC2" gate="L298" pin="OUT4"/>
 <pinref part="MOT_Y" gate="G$1" pin="4"/>
-<wire x1="205.74" y1="99.06" x2="228.6" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="99.06" x2="213.36" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="99.06" x2="238.76" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="109.22" x2="213.36" y2="99.06" width="0.1524" layer="91"/>
+<junction x="213.36" y="99.06"/>
+<pinref part="D20" gate="1" pin="C"/>
+<wire x1="213.36" y1="99.06" x2="213.36" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="D16" gate="1" pin="A"/>
 </segment>
 </net>
 <net name="N$18" class="0">
@@ -2159,6 +2364,15 @@ Source: tuxgr_12x2_r2.pdf</description>
 <pinref part="DIS1" gate="G$1" pin="D7"/>
 <wire x1="71.12" y1="144.78" x2="55.88" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="55.88" y1="144.78" x2="55.88" y2="147.32" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$43" class="0">
+<segment>
+<pinref part="PCB1" gate="G$1" pin="A0"/>
+<wire x1="12.7" y1="83.82" x2="5.08" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="5.08" y1="83.82" x2="5.08" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="5.08" y1="45.72" x2="30.48" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="45.72" x2="30.48" y2="35.56" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

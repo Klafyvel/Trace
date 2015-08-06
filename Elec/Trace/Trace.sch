@@ -1638,6 +1638,7 @@ Source: tuxgr_12x2_r2.pdf</description>
 <sheet>
 <plain>
 <text x="218.44" y="20.32" size="1.778" layer="91">Klafyvel</text>
+<text x="172.72" y="10.16" size="6.4516" layer="91" ratio="29">SIVIGIK</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -1649,7 +1650,7 @@ Source: tuxgr_12x2_r2.pdf</description>
 <instance part="P+1" gate="1" x="172.72" y="121.92"/>
 <instance part="P+2" gate="1" x="172.72" y="162.56"/>
 <instance part="P+3" gate="1" x="88.9" y="160.02"/>
-<instance part="P+4" gate="1" x="7.62" y="88.9"/>
+<instance part="P+4" gate="1" x="10.16" y="88.9"/>
 <instance part="P+5" gate="1" x="68.58" y="38.1"/>
 <instance part="GND1" gate="1" x="76.2" y="25.4"/>
 <instance part="GND2" gate="1" x="172.72" y="88.9"/>
@@ -1897,7 +1898,7 @@ Source: tuxgr_12x2_r2.pdf</description>
 <segment>
 <pinref part="P+4" gate="1" pin="+5V"/>
 <pinref part="PCB1" gate="G$1" pin="VIN"/>
-<wire x1="7.62" y1="86.36" x2="12.7" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="10.16" y1="86.36" x2="12.7" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="12.7" y1="86.36" x2="12.7" y2="91.44" width="0.1524" layer="91"/>
 </segment>
 </net>
