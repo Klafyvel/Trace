@@ -26,6 +26,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_file.clicked.connect(self.choose_file)
         self.btn_go_to_zero.clicked.connect(self.go_to_zero)
         self.display_draw_steps.clicked.connect(self.draw_file)
+        self.redraw.clicked.connect(self.draw_file)
+        self.btn_send_current_file.clicked.connect(self.send_file)
 
         self.serial_timer = QTimer()
         self.serial_timer.timeout.connect(self.check_serial_communication)
@@ -45,6 +47,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.file = QFileDialog.getOpenFileName(self, "Sélectionner un fichier", "")[0]
         if self.file:
             self.filename.setText(self.file)
+            with open(self.file, "r") as f:
+                self.code_edit.setText(f.read())
             self.draw_file()
     @pyqtSlot()
     def list_serials(self):
@@ -96,13 +100,32 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.send_user_cmd()
 
     @pyqtSlot()
-    def draw_file(self):
-        if not self.file:
-            # QMessageBox.critical(self, "Aperçu de fichier", "Veuillez ouvrir un fichier.")
+    def send_file(self):
+        if not self.serial.isOpen():
+            QMessageBox.critical(self, "Port série", "Veuillez ouvrir un port série.")
             return
-        gcode = ''
-        with open(self.file, 'r') as f:
-            gcode = f.read()
+        gcode = self.code_edit.toPlainText()
+        current_line = ""
+        self.serial.timeout = None # no timeout while we are working, because we don't know how many time needs the machine.
+        for c in gcode:
+            if c is "\n":
+                self.print(current_line, self.PRGM_PRINT)
+                self.serial.write(bytes(current_line, "utf-8"))
+                txt = self.serial.readline().decode('ascii')
+                self.print(txt, self.MACHINE_PRINT)
+                if 'OK' not in txt:
+                    QMessageBox.critical(self, "Port série", "Erreur sur la machine.")
+                    break
+                current_line = ""
+            else:
+                current_line += c
+        self.serial.timeout = self.timeout_read.value() / 1000 # serial needs timeout in seconds
+        QMessageBox.information(self, "Port série", "Fin de l'usinage.")
+
+    @pyqtSlot()
+    def draw_file(self):
+        gcode = self.code_edit.toPlainText()
+        print(gcode)
         sc = QGraphicsScene(self.fileview)
         current_pos = [0,0,0]
         for n,t in enumerate(parse_instr(gcode)):
@@ -174,6 +197,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     USER_PRINT = 0 
     INFO_PRINT = 1
     MACHINE_PRINT = 2
+    PRGM_PRINT = 3
     def print(self, txt, author=USER_PRINT):
         msg = "{}"
         if author == self.USER_PRINT:
@@ -182,6 +206,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             msg = "\n<br /><span style='color:blue;font-weight:bold;'>{}</span>"
         elif author == self.MACHINE_PRINT:
             msg = "\n<br /><span style='color:green;'>Machine: {}</span>"
+        elif author == self.PRGM_PRINT:
+            msg = "\n<br /><span style='color:red;'>Prgm: {}</span>"
         self.serial_monitor.moveCursor(QTextCursor.End)
         self.serial_monitor.insertHtml(msg.format(txt))
         self.serial_monitor.moveCursor(QTextCursor.End)
