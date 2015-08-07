@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>903</width>
-    <height>462</height>
+    <height>522</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget_2">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
@@ -171,7 +171,7 @@ p, li { white-space: pre-wrap; }
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_serie">
            <attribute name="title">
@@ -310,7 +310,14 @@ p, li { white-space: pre-wrap; }
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_8">
             <item>
-             <widget class="QGroupBox" name="groupBox_3">
+             <widget class="QCheckBox" name="send_manual_cmd">
+              <property name="text">
+               <string>Envoi de commandes manuelles</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="grp_plan">
               <property name="title">
                <string>Position dans le plan</string>
               </property>
@@ -381,7 +388,7 @@ Position Zéro</string>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
-               <widget class="QGroupBox" name="groupBox_4">
+               <widget class="QGroupBox" name="grp_z">
                 <property name="title">
                  <string>Axe Z</string>
                 </property>

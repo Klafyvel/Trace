@@ -28,9 +28,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.display_draw_steps.clicked.connect(self.draw_file)
         self.redraw.clicked.connect(self.draw_file)
         self.btn_send_current_file.clicked.connect(self.send_file)
+        self.send_manual_cmd.clicked.connect(self.manual_mode)
 
         self.serial_timer = QTimer()
         self.serial_timer.timeout.connect(self.check_serial_communication)
+
+        self.grp_plan.setEnabled(False)
+        self.grp_z.setEnabled(False)
+        self.btn_go_to_zero.setEnabled(False) 
+
 
     @pyqtSlot()
     def check_serial_communication(self):
@@ -93,6 +99,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.serial.write(bytes(txt, encoding="utf-8"))
         self.command_edit.setText("")
         self.print(txt, self.USER_PRINT)
+
+    @pyqtSlot()
+    def manual_mode(self):
+        if self.send_manual_cmd.isChecked():
+            if not self.serial.isOpen():
+                QMessageBox.critical(self, "Port série", "Veuillez ouvrir un port série.")
+                return
+            self.print("Start manual mode", self.INFO_PRINT)
+            self.serial.write(bytes('prgm', encoding="utf-8"))
+            self.grp_plan.setEnabled(True)
+            self.grp_z.setEnabled(True)
+            self.btn_go_to_zero.setEnabled(True) 
+        else:
+            self.print("End of manual mode", self.INFO_PRINT)
+            self.grp_plan.setEnabled(False)
+            self.grp_z.setEnabled(False)
+            self.btn_go_to_zero.setEnabled(False) 
+
 
     @pyqtSlot()
     def go_to_zero(self):
