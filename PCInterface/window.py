@@ -29,6 +29,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.redraw.clicked.connect(self.draw_file)
         self.btn_send_current_file.clicked.connect(self.send_file)
         self.send_manual_cmd.clicked.connect(self.manual_mode)
+        self.btn_reload.clicked.connect(self.load_file)
+        self.btn_save_file.clicked.connect(self.save_file)
+        self.btn_save_as.clicked.connect(self.save_as)
 
         self.btn_x_plus.clicked.connect(self.x_plus)
         self.btn_x_plus.clicked.connect(self.x_minus)
@@ -49,6 +52,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.pos = [0,0,1]
 
+        self.sc = QGraphicsScene(self.fileview)
 
     @pyqtSlot()
     def check_serial_communication(self):
@@ -62,7 +66,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def choose_file(self):
-        self.file = QFileDialog.getOpenFileName(self, "Sélectionner un fichier", "")[0]
+        t = QFileDialog.getOpenFileName(self, "Sélectionner un fichier", filter='Gcodes files (*.gcode *.ngc)\nAll files (*)')[0]
+        if t is not '':
+            self.file = t
+            self.load_file()
+    @pyqtSlot()
+    def load_file(self):
         if self.file:
             self.filename.setText(self.file)
             with open(self.file, "r") as f:
@@ -197,8 +206,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def draw_file(self):
         gcode = self.code_edit.toPlainText()
-        print(gcode)
-        sc = QGraphicsScene(self.fileview)
+        self.sc.clear()
         current_pos = [0,0,0]
         for n,t in enumerate(parse_instr(gcode)):
             if t['name'] is not 'G':continue
@@ -206,7 +214,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             x, y, z= current_pos
 
             if self.display_draw_steps.isChecked():
-                txt = sc.addText(str(n))
+                txt = self.sc.addText(str(n))
                 txt.setPos(x,y)
                 txt.setFlags(QGraphicsItem.ItemIsFocusable | QGraphicsItem.ItemIsMovable |
                        QGraphicsItem.ItemIsSelectable | txt.flags())
@@ -218,7 +226,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 z = t['args']['Z']
             p = QPen(QColor((z <= 0)*255, 0, (z > 0)*255))
             if t['value'] in (0, 1):
-                sc.addLine(current_pos[0], current_pos[1], x, y, pen=p)
+                self.sc.addLine(current_pos[0], current_pos[1], x, y, pen=p)
             elif t['value'] in (2, 3):
                 i,j,k, = current_pos
                 if 'I' in t['args'].keys():
@@ -259,10 +267,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     pp.arcTo(center_x - h, center_y - h, h*2, h*2, start_angle, end_angle - start_angle - 360)
                 else:
                     pp.arcTo(center_x - h, center_y - h, h*2, h*2, start_angle, end_angle - start_angle)
-                sc.addPath(pp, p)
+                self.sc.addPath(pp, p)
             current_pos = x,y,z
 
-        self.fileview.setScene(sc)
+        self.fileview.setScene(self.sc)
+
+    @pyqtSlot()
+    def save_file(self):
+        if self.file:
+            with open(self.file, "w") as f:
+                f.write(self.code_edit.toPlainText())
+        else :
+            self.save_as()
+    @pyqtSlot()
+    def save_as(self):
+        t = QFileDialog.getSaveFileName(self, "Sélectionner un fichier", filter='Gcodes files (*.gcode *.ngc)\nAll files (*)')[0]
+        if t is not '':
+            self.file = t
+            self.save_file()
                 
 
 
