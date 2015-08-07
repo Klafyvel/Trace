@@ -30,6 +30,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_send_current_file.clicked.connect(self.send_file)
         self.send_manual_cmd.clicked.connect(self.manual_mode)
 
+        self.btn_x_plus.clicked.connect(self.x_plus)
+        self.btn_x_plus.clicked.connect(self.x_minus)
+        self.btn_y_plus.clicked.connect(self.y_plus)
+        self.btn_y_plus.clicked.connect(self.y_minus)
+
+        self.btn_set_z_high.clicked.connect(self.z_high)
+        self.btn_set_z_low.clicked.connect(self.z_low)        
+
         self.serial_timer = QTimer()
         self.serial_timer.timeout.connect(self.check_serial_communication)
 
@@ -38,6 +46,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_go_to_zero.setEnabled(False)
         self.btn_command.setEnabled(False)
         self.command_edit.setEnabled(False)
+
+        self.pos = [0,0,1]
 
 
     @pyqtSlot()
@@ -127,6 +137,37 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def go_to_zero(self):
         self.command_edit.setText("G28")
+        self.send_user_cmd()
+
+    @pyqtSlot()
+    def y_plus(self):
+        self.pos[1] += self.step_y.value()
+        self.command_edit.setText("G00 Y{}".format(self.pos[1]))
+        self.send_user_cmd()
+    @pyqtSlot()
+    def y_minus(self):
+        self.pos[1] -= self.step_y.value()
+        self.command_edit.setText("G00 Y{}".format(self.pos[1]))
+        self.send_user_cmd()
+    @pyqtSlot()
+    def x_plus(self):
+        self.pos[0] += self.step_y.value()
+        self.command_edit.setText("G00 X{}".format(self.pos[0]))
+        self.send_user_cmd()
+    @pyqtSlot()
+    def x_minus(self):
+        self.pos[0] += self.step_y.value()
+        self.command_edit.setText("G00 X{}".format(self.pos[0]))
+        self.send_user_cmd()
+    @pyqtSlot()
+    def z_high(self):
+        self.pos[2] = 1
+        self.command_edit.setText("G00 Z{}".format(self.pos[2]))
+        self.send_user_cmd()
+    @pyqtSlot()
+    def z_low(self):
+        self.pos[2] = -1
+        self.command_edit.setText("G00 Z{}".format(self.pos[2]))
         self.send_user_cmd()
 
     @pyqtSlot()

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>903</width>
+    <width>897</width>
     <height>522</height>
    </rect>
   </property>
@@ -160,6 +160,10 @@ p, li { white-space: pre-wrap; }
               <widget class="QPushButton" name="btn_command">
                <property name="text">
                 <string>Envoyer</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>run.png</normaloff>run.png</iconset>
                </property>
               </widget>
              </item>
@@ -329,6 +333,10 @@ p, li { white-space: pre-wrap; }
                    <property name="text">
                     <string>Y+</string>
                    </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>up.png</normaloff>up.png</iconset>
+                   </property>
                   </widget>
                  </item>
                  <item row="1" column="2">
@@ -336,12 +344,20 @@ p, li { white-space: pre-wrap; }
                    <property name="text">
                     <string>X+</string>
                    </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>right.png</normaloff>right.png</iconset>
+                   </property>
                   </widget>
                  </item>
                  <item row="2" column="1">
                   <widget class="QPushButton" name="btn_y_minus">
                    <property name="text">
                     <string>Y-</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>down.png</normaloff>down.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -357,13 +373,9 @@ p, li { white-space: pre-wrap; }
                    <property name="text">
                     <string>X-</string>
                    </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QPushButton" name="btn_set_origin_plan">
-                   <property name="text">
-                    <string>Définir la 
-Position Zéro</string>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>left.png</normaloff>left.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -398,70 +410,72 @@ Position Zéro</string>
                 <property name="checkable">
                  <bool>false</bool>
                 </property>
-                <layout class="QVBoxLayout" name="verticalLayout_7">
+                <layout class="QHBoxLayout" name="horizontalLayout_6">
                  <item>
-                  <layout class="QGridLayout" name="gridLayout_3">
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_2">
-                     <property name="text">
-                      <string>100%</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="4" column="2">
-                    <widget class="QPushButton" name="btn_set_z_low">
-                     <property name="text">
-                      <string>Position basse</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="4" column="0">
-                    <widget class="QLabel" name="label_3">
-                     <property name="text">
-                      <string>0%</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="2">
-                    <widget class="QPushButton" name="btn_set_z_high">
-                     <property name="text">
-                      <string>Position haute</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="2" column="0">
-                    <widget class="QSlider" name="slider_z_value">
-                     <property name="orientation">
-                      <enum>Qt::Vertical</enum>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="2" column="2">
-                    <widget class="QLCDNumber" name="lcdNumber"/>
-                   </item>
-                  </layout>
+                  <widget class="QPushButton" name="btn_set_z_low">
+                   <property name="text">
+                    <string>Position basse</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>writing.png</normaloff>writing.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>64</width>
+                     <height>64</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_set_z_high">
+                   <property name="text">
+                    <string>Position haute</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>not_writing.png</normaloff>not_writing.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>64</width>
+                     <height>64</height>
+                    </size>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
               </item>
-              <item>
-               <widget class="QPushButton" name="btn_go_to_zero">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Aller à la position
-Zéro</string>
-                </property>
-                <property name="flat">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
              </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_go_to_zero">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Aller à la position
+Zéro</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>origin.png</normaloff>origin.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>64</width>
+                <height>64</height>
+               </size>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QPushButton" name="btn_send_current_file">
@@ -484,30 +498,14 @@ Zéro</string>
  <resources/>
  <connections>
   <connection>
-   <sender>slider_z_value</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>lcdNumber</receiver>
-   <slot>display(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>429</x>
-     <y>385</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>722</x>
-     <y>385</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>command_edit</sender>
    <signal>returnPressed()</signal>
    <receiver>btn_command</receiver>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>276</x>
-     <y>418</y>
+     <x>260</x>
+     <y>433</y>
     </hint>
     <hint type="destinationlabel">
      <x>367</x>
