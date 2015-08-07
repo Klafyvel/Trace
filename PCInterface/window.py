@@ -235,5 +235,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.serial_monitor.moveCursor(QTextCursor.End)
         self.serial_monitor.insertHtml(msg.format(txt))
         self.serial_monitor.moveCursor(QTextCursor.End)
+        if self.use_log.isChecked():
+            with open("log.txt", 'a') as f:
+                f.write(msg)
 
 
