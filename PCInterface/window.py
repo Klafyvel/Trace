@@ -35,7 +35,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.grp_plan.setEnabled(False)
         self.grp_z.setEnabled(False)
-        self.btn_go_to_zero.setEnabled(False) 
+        self.btn_go_to_zero.setEnabled(False)
+        self.btn_command.setEnabled(False)
+        self.command_edit.setEnabled(False)
 
 
     @pyqtSlot()
@@ -105,18 +107,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.send_manual_cmd.isChecked():
             if not self.serial.isOpen():
                 QMessageBox.critical(self, "Port série", "Veuillez ouvrir un port série.")
+                self.send_manual_cmd.setChecked(False)
                 return
             self.print("Start manual mode", self.INFO_PRINT)
             self.serial.write(bytes('prgm', encoding="utf-8"))
             self.grp_plan.setEnabled(True)
             self.grp_z.setEnabled(True)
             self.btn_go_to_zero.setEnabled(True) 
+            self.btn_command.setEnabled(True)
+            self.command_edit.setEnabled(True)
         else:
             self.print("End of manual mode", self.INFO_PRINT)
             self.grp_plan.setEnabled(False)
             self.grp_z.setEnabled(False)
-            self.btn_go_to_zero.setEnabled(False) 
-
+            self.btn_go_to_zero.setEnabled(False)
+            self.btn_command.setEnabled(False)
+            self.command_edit.setEnabled(False)
 
     @pyqtSlot()
     def go_to_zero(self):
@@ -128,6 +134,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if not self.serial.isOpen():
             QMessageBox.critical(self, "Port série", "Veuillez ouvrir un port série.")
             return
+        self.serial.write(bytes('prgm', encoding="utf-8"))
         gcode = self.code_edit.toPlainText()
         current_line = ""
         self.serial.timeout = None # no timeout while we are working, because we don't know how many time needs the machine.
@@ -237,6 +244,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.serial_monitor.moveCursor(QTextCursor.End)
         if self.use_log.isChecked():
             with open("log.txt", 'a') as f:
-                f.write(msg)
+                f.write(msg.format(txt))
 
 
