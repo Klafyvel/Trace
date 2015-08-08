@@ -23,10 +23,12 @@ def parse(gcode):
     pile = Pile(gcode+'\n')
     for c in pile.token():
         if c is ' ': continue
-        elif c is '(' : 
-            while pile.peek() is not '\n':
-                pile.pop()
-            yield ('__next__', '__next__')
+        elif c is '(' :
+            com = ''
+            while pile.peek() is not ')':
+                com += pile.pop()
+            pile.pop() # removes the ')'
+            yield ('__comment__', c)
         elif c is '\n': yield ('__next__', '__next__')
         else: yield (c, parse_num(pile))
 
