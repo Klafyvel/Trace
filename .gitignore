@@ -30,3 +30,6 @@
 # Python
 *.pyc
 __pycache__/
+
+# Application's files
+log.txt
