@@ -1,3 +1,19 @@
+# Trace
+# Copyright (C) 2015  Hugo LEVY-FALK
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import serial
 
 from math import asin, acos, sqrt, pi
@@ -42,7 +58,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_y_plus.clicked.connect(self.y_minus)
 
         self.btn_set_z_high.clicked.connect(self.z_high)
-        self.btn_set_z_low.clicked.connect(self.z_low)        
+        self.btn_set_z_low.clicked.connect(self.z_low)   
+
+        self.aboutQt.clicked.connect(self.show_Qt)     
 
         self.serial_timer = QTimer()
         self.serial_timer.timeout.connect(self.check_serial_communication)
@@ -301,6 +319,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def get_preprocessor_result(self):
         self.code_edit.setText(self.preproc.gcode)
+
+    @pyqtSlot()
+    def show_Qt(self):
+        QMessageBox.aboutQt(self)
 
                 
 
