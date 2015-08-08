@@ -12,6 +12,8 @@ from serial_list import serial_ports
 
 from gcodeParser import parse_instr
 
+from preprocessor import PreprocessorDialog
+
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -32,6 +34,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_reload.clicked.connect(self.load_file)
         self.btn_save_file.clicked.connect(self.save_file)
         self.btn_save_as.clicked.connect(self.save_as)
+        self.btn_preprocessor.clicked.connect(self.preprocessor)
 
         self.btn_x_plus.clicked.connect(self.x_plus)
         self.btn_x_plus.clicked.connect(self.x_minus)
@@ -53,6 +56,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pos = [0,0,1]
 
         self.sc = QGraphicsScene(self.fileview)
+        self.preproc = PreprocessorDialog("", parent=self)
+        self.preproc.accepted.connect(self.get_preprocessor_result)
+
+
 
     @pyqtSlot()
     def check_serial_communication(self):
@@ -284,7 +291,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         t = QFileDialog.getSaveFileName(self, "Sélectionner un fichier", filter='Gcodes files (*.gcode *.ngc)\nAll files (*)')[0]
         if t is not '':
             self.file = t
+            self.filename.setText(self.file)
             self.save_file()
+
+    @pyqtSlot()
+    def preprocessor(self):
+        self.preproc.gcode = self.code_edit.toPlainText()
+        self.preproc.show()
+    @pyqtSlot()
+    def get_preprocessor_result(self):
+        self.code_edit.setText(self.preproc.gcode)
+
                 
 
 

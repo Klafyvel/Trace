@@ -43,6 +43,10 @@ def parse_instr(gcode):
                 value = i[1]
             elif i[0] in 'XYZIJKN':
                 args[i[0]] = i[1]
+            elif i[0] == '__comment__':
+                if name is "":
+                    name = 'comment'
+                args['comments'] = i[1]
         elif name is not "":
             yield {'name':name, 'value':value, 'args':args}
             name = ""
