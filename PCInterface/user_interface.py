@@ -13,7 +13,6 @@
 # 
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'window.ui'
@@ -27,7 +26,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(896, 528)
+        MainWindow.resize(886, 528)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("traceIcon.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -257,12 +256,15 @@ class Ui_MainWindow(object):
         self.btn_x_minus.setObjectName("btn_x_minus")
         self.gridLayout_2.addWidget(self.btn_x_minus, 1, 0, 1, 1)
         self.step_x = QtWidgets.QDoubleSpinBox(self.grp_plan)
+        self.step_x.setPrefix("")
+        self.step_x.setProperty("value", 1.0)
         self.step_x.setObjectName("step_x")
         self.gridLayout_2.addWidget(self.step_x, 0, 4, 1, 1)
         self.label_7 = QtWidgets.QLabel(self.grp_plan)
         self.label_7.setObjectName("label_7")
         self.gridLayout_2.addWidget(self.label_7, 2, 3, 1, 1)
         self.step_y = QtWidgets.QDoubleSpinBox(self.grp_plan)
+        self.step_y.setProperty("value", 1.0)
         self.step_y.setObjectName("step_y")
         self.gridLayout_2.addWidget(self.step_y, 2, 4, 1, 1)
         self.verticalLayout_6.addLayout(self.gridLayout_2)
@@ -389,9 +391,11 @@ class Ui_MainWindow(object):
         self.btn_y_plus.setText(_translate("MainWindow", "Y+"))
         self.btn_x_plus.setText(_translate("MainWindow", "X+"))
         self.btn_y_minus.setText(_translate("MainWindow", "Y-"))
-        self.label_6.setText(_translate("MainWindow", "Pas x (mm) :"))
+        self.label_6.setText(_translate("MainWindow", "Pas x :"))
         self.btn_x_minus.setText(_translate("MainWindow", "X-"))
-        self.label_7.setText(_translate("MainWindow", "Pas y (mm)"))
+        self.step_x.setSuffix(_translate("MainWindow", " mm"))
+        self.label_7.setText(_translate("MainWindow", "Pas y :"))
+        self.step_y.setSuffix(_translate("MainWindow", " mm"))
         self.grp_z.setTitle(_translate("MainWindow", "Axe Z"))
         self.btn_set_z_low.setText(_translate("MainWindow", "Position basse"))
         self.btn_set_z_high.setText(_translate("MainWindow", "Position haute"))

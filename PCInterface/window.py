@@ -46,16 +46,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.display_draw_steps.clicked.connect(self.draw_file)
         self.redraw.clicked.connect(self.draw_file)
         self.btn_send_current_file.clicked.connect(self.send_file)
-        self.send_manual_cmd.clicked.connect(self.manual_mode)
+        self.send_manual_cmd.stateChanged.connect(self.manual_mode)
         self.btn_reload.clicked.connect(self.load_file)
         self.btn_save_file.clicked.connect(self.save_file)
         self.btn_save_as.clicked.connect(self.save_as)
         self.btn_preprocessor.clicked.connect(self.preprocessor)
 
         self.btn_x_plus.clicked.connect(self.x_plus)
-        self.btn_x_plus.clicked.connect(self.x_minus)
+        self.btn_x_minus.clicked.connect(self.x_minus)
         self.btn_y_plus.clicked.connect(self.y_plus)
-        self.btn_y_plus.clicked.connect(self.y_minus)
+        self.btn_y_minus.clicked.connect(self.y_minus)
 
         self.btn_set_z_high.clicked.connect(self.z_high)
         self.btn_set_z_low.clicked.connect(self.z_low)   
@@ -119,7 +119,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.btn_serial_ports_list.setEnabled(True)
             self.timeout_read.setEnabled(True)
             self.btn_connect.setText("Connecter")
+            self.send_manual_cmd.setChecked(False)
             QMessageBox.information(self, "Port série", "Le port série a été fermé.")
+            self.print("Serial port closed", self.INFO_PRINT)
             return
         self.serial.port = self.serial_ports_list.currentText()
         self.serial.baudrate = int(self.baudrate.currentText())
@@ -142,7 +144,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             QMessageBox.critical(self, "Port série", "Veuillez ouvrir un port série.")
             return
         txt = self.command_edit.text()
-        self.serial.write(bytes(txt, encoding="utf-8"))
+        self.serial.write(bytes(txt+'\n', encoding="utf-8"))
         self.command_edit.setText("")
         self.print(txt, self.USER_PRINT)
 
@@ -185,12 +187,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.send_user_cmd()
     @pyqtSlot()
     def x_plus(self):
-        self.pos[0] += self.step_y.value()
+        self.pos[0] += self.step_x.value()
         self.command_edit.setText("G00 X{}".format(self.pos[0]))
         self.send_user_cmd()
     @pyqtSlot()
     def x_minus(self):
-        self.pos[0] += self.step_y.value()
+        self.pos[0] += self.step_x.value()
         self.command_edit.setText("G00 X{}".format(self.pos[0]))
         self.send_user_cmd()
     @pyqtSlot()

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>896</width>
+    <width>886</width>
     <height>528</height>
    </rect>
   </property>
@@ -431,7 +431,7 @@ p, li { white-space: pre-wrap; }
                  <item row="0" column="3">
                   <widget class="QLabel" name="label_6">
                    <property name="text">
-                    <string>Pas x (mm) :</string>
+                    <string>Pas x :</string>
                    </property>
                   </widget>
                  </item>
@@ -447,17 +447,34 @@ p, li { white-space: pre-wrap; }
                   </widget>
                  </item>
                  <item row="0" column="4">
-                  <widget class="QDoubleSpinBox" name="step_x"/>
+                  <widget class="QDoubleSpinBox" name="step_x">
+                   <property name="prefix">
+                    <string/>
+                   </property>
+                   <property name="suffix">
+                    <string> mm</string>
+                   </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
+                  </widget>
                  </item>
                  <item row="2" column="3">
                   <widget class="QLabel" name="label_7">
                    <property name="text">
-                    <string>Pas y (mm)</string>
+                    <string>Pas y :</string>
                    </property>
                   </widget>
                  </item>
                  <item row="2" column="4">
-                  <widget class="QDoubleSpinBox" name="step_y"/>
+                  <widget class="QDoubleSpinBox" name="step_y">
+                   <property name="suffix">
+                    <string> mm</string>
+                   </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
