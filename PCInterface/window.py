@@ -212,21 +212,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             QMessageBox.critical(self, "Port série", "Veuillez ouvrir un port série.")
             return
         self.serial.write(bytes('prgm', encoding="utf-8"))
-        gcode = self.code_edit.toPlainText()
-        current_line = ""
+        gcode = self.code_edit.toPlainText().split('\n')
         self.serial.timeout = None # no timeout while we are working, because we don't know how many time needs the machine.
         for c in gcode:
-            if c is "\n":
-                self.print(current_line, self.PRGM_PRINT)
-                self.serial.write(bytes(current_line, "utf-8"))
-                txt = self.serial.readline().decode('ascii')
-                self.print(txt, self.MACHINE_PRINT)
-                if 'OK' not in txt:
-                    QMessageBox.critical(self, "Port série", "Erreur sur la machine.")
-                    break
-                current_line = ""
-            else:
-                current_line += c
+            self.print(c, self.PRGM_PRINT)
+            self.serial.write(bytes(c+'\n', "utf-8"))
+            txt = self.serial.readline().decode('ascii')
+            self.print(txt, self.MACHINE_PRINT)
+            if 'OK' not in txt:
+                QMessageBox.critical(self, "Port série", "Erreur sur la machine.")
+                break
         self.serial.timeout = self.timeout_read.value() / 1000 # serial needs timeout in seconds
         QMessageBox.information(self, "Port série", "Fin de l'usinage.")
 
