@@ -192,7 +192,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.send_user_cmd()
     @pyqtSlot()
     def x_minus(self):
-        self.pos[0] += self.step_x.value()
+        self.pos[0] -= self.step_x.value()
         self.command_edit.setText("G00 X{}".format(self.pos[0]))
         self.send_user_cmd()
     @pyqtSlot()
@@ -275,15 +275,33 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     direction_begin = -(current_pos[1] - center_y) / abs(current_pos[1] - center_y)
 
                 try:
-                    start_angle = direction_begin * acos((current_pos[0] - center_x)/h)/2/pi * 360
+                    c = (current_pos[0] - center_x)/h
+                    if c < -1 :
+                        c = -1
+                    elif c > 1:
+                        c = 1
+                    start_angle = direction_begin * acos(c)/2/pi * 360
                 except ValueError as e:
                     print(e)
-                    print(locals())
+                    print('start_angle = direction_begin * acos((current_pos[0] - center_x)/h)/2/pi * 360')
+                    print('current_pos[0]', current_pos[0])
+                    print('center_x', center_x)
+                    print('h',h)
+                    print('calcul : (current_pos[0] - center_x)/h', (current_pos[0] - center_x)/h, end="\n\n")
                 try:
-                    end_angle = direction_end * acos((x - center_x)/h)/2/pi * 360
+                    c = (x - center_x)/h
+                    if c < -1 :
+                        c = -1
+                    elif c > 1:
+                        c = 1
+                    end_angle = direction_end * acos(c)/2/pi * 360
                 except ValueError as e:
                     print(e)
-                    print(locals())
+                    print('end_angle = direction_end * acos((x - center_x)/h)/2/pi * 360')
+                    print('x', x)
+                    print('center_x', center_x)
+                    print('h',h)
+                    print('calcul : (x - center_x)/h', (x - center_x)/h, end="\n\n")
 
                 pp.moveTo(current_pos[0], current_pos[1])
                 if clockwise:
