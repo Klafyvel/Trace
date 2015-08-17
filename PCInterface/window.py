@@ -77,7 +77,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.preproc = PreprocessorDialog("", parent=self)
         self.preproc.accepted.connect(self.get_preprocessor_result)
 
-
+        self.list_serials()
 
     @pyqtSlot()
     def check_serial_communication(self):
@@ -211,6 +211,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if not self.serial.isOpen():
             QMessageBox.critical(self, "Port série", "Veuillez ouvrir un port série.")
             return
+        self.send_manual_cmd.setChecked(False)
         self.serial.write(bytes('prgm', encoding="utf-8"))
         gcode = self.code_edit.toPlainText().split('\n')
         self.serial.timeout = None # no timeout while we are working, because we don't know how many time needs the machine.

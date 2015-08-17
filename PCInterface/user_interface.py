@@ -12,7 +12,8 @@
 # GNU General Public License for more details.
 # 
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'window.ui'
@@ -198,7 +199,7 @@ class Ui_MainWindow(object):
         self.serial_settings.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_5)
         self.timeout_read = QtWidgets.QSpinBox(self.tab_serie)
         self.timeout_read.setMaximum(1000)
-        self.timeout_read.setProperty("value", 100)
+        self.timeout_read.setProperty("value", 10)
         self.timeout_read.setObjectName("timeout_read")
         self.serial_settings.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.timeout_read)
         self.utiliserFichierLogTxtLabel = QtWidgets.QLabel(self.tab_serie)
