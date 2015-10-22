@@ -74,6 +74,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pos = [0,0,1]
 
         self.sc = QGraphicsScene(self.fileview)
+        self.fileview.scale(1, -1)
         self.preproc = PreprocessorDialog("", parent=self)
         self.preproc.accepted.connect(self.get_preprocessor_result)
 
