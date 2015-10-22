@@ -241,31 +241,32 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 txt.setPos(x,y)
                 txt.setFlags(QGraphicsItem.ItemIsFocusable | QGraphicsItem.ItemIsMovable |
                        QGraphicsItem.ItemIsSelectable | txt.flags())
-            if 'X' in t['args'].keys():
-                x = t['args']['X']
-            if 'Y' in t['args'].keys():
-                y = t['args']['Y']
-            if 'Z' in t['args'].keys():
-                z = t['args']['Z']
+
+            x = t['args'].get('X', x)
+            y = t['args'].get('Y', y)
+            z = t['args'].get('Z', z)
+
             p = QPen(QColor((z <= 0)*255, 0, (z > 0)*255))
+
             if t['value'] in (0, 1):
                 self.sc.addLine(current_pos[0], current_pos[1], x, y, pen=p)
             elif t['value'] in (2, 3):
-                i,j,k, = current_pos
-                if 'I' in t['args'].keys():
-                    i = t['args']['I']
-                if 'J' in t['args'].keys():
-                    j = t['args']['J']
-                if 'K' in t['args'].keys():
-                    k = t['args']['K']
+                i,j,k, = current_pos           
+                i = t['args'].get('I', i)
+                j = t['args'].get('J', j)
+                k = t['args'].get('K', k)
+
                 pp = QPainterPath()
+
                 h = sqrt(i**2 + j**2)
+                if h == 0:
+                    current_pos = x,y,z
+                    continue
+
                 center_x = current_pos[0] + i
                 center_y = current_pos[1] + j
 
-                clockwise = False
-                if t['value'] == 2:
-                    clockwise = True
+                clockwise = (t['value'] == 2)
 
                 direction_end = -1
                 direction_begin = -1
@@ -274,38 +275,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 if current_pos[1]-center_y != 0:
                     direction_begin = -(current_pos[1] - center_y) / abs(current_pos[1] - center_y)
 
-                try:
-                    c = (current_pos[0] - center_x)/h
-                    if c < -1 :
-                        c = -1
-                    elif c > 1:
-                        c = 1
-                    start_angle = direction_begin * acos(c)/2/pi * 360
-                except ValueError as e:
-                    print(e)
-                    print('start_angle = direction_begin * acos((current_pos[0] - center_x)/h)/2/pi * 360')
-                    print('current_pos[0]', current_pos[0])
-                    print('center_x', center_x)
-                    print('h',h)
-                    print('calcul : (current_pos[0] - center_x)/h', (current_pos[0] - center_x)/h, end="\n\n")
-                try:
-                    c = (x - center_x)/h
-                    if c < -1 :
-                        c = -1
-                    elif c > 1:
-                        c = 1
-                    end_angle = direction_end * acos(c)/2/pi * 360
-                except ValueError as e:
-                    print(e)
-                    print('end_angle = direction_end * acos((x - center_x)/h)/2/pi * 360')
-                    print('x', x)
-                    print('center_x', center_x)
-                    print('h',h)
-                    print('calcul : (x - center_x)/h', (x - center_x)/h, end="\n\n")
-
+                c = (current_pos[0] - center_x)/h
+                if c < -1 :
+                    c = -1
+                elif c > 1:
+                    c = 1
+                start_angle = direction_begin * acos(c)/2/pi * 360
+                
+                c = (x - center_x)/h
+                if c < -1 :
+                    c = -1
+                elif c > 1:
+                    c = 1
+                end_angle = direction_end * acos(c)/2/pi * 360
+                
                 pp.moveTo(current_pos[0], current_pos[1])
                 if clockwise:
-                    pp.arcTo(center_x - h, center_y - h, h*2, h*2, start_angle, end_angle - start_angle - 360)
+                    pp.arcTo(center_x - h, center_y - h, h*2, h*2, start_angle, start_angle - end_angle)
                 else:
                     pp.arcTo(center_x - h, center_y - h, h*2, h*2, start_angle, end_angle - start_angle)
                 self.sc.addPath(pp, p)
