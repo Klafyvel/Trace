@@ -1,4 +1,8 @@
-import sys, glob, serial
+import sys
+import glob
+import serial
+
+
 def serial_ports():
     """Lists serial ports
 

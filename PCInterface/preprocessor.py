@@ -1,16 +1,16 @@
 # Trace
 # Copyright (C) 2015  Hugo LEVY-FALK
-# 
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -22,7 +22,9 @@ from preprocessor_interface import Ui_dialog
 
 from gcodeParser import parse_instr
 
+
 class PreprocessorDialog(QDialog, Ui_dialog):
+
     def __init__(self, gcode, parent=None):
         super(PreprocessorDialog, self).__init__(parent=parent)
         self.setupUi(self)
@@ -38,6 +40,7 @@ class PreprocessorDialog(QDialog, Ui_dialog):
     @pyqtSlot()
     def run_preprocessor(self):
         self.remove_useless()
+
     def remove_useless(self):
         rm_nums = self.chk_del_num.isChecked()
         rm_comm = self.chk_del_comments.isChecked()
