@@ -1,19 +1,3 @@
-# Trace
-# Copyright (C) 2015  Hugo LEVY-FALK
-# 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'preprocessor.ui'
@@ -59,6 +43,9 @@ class Ui_dialog(object):
         self.chk_del_comments.setChecked(True)
         self.chk_del_comments.setObjectName("chk_del_comments")
         self.verticalLayout.addWidget(self.chk_del_comments)
+        self.chk_do_calcs = QtWidgets.QCheckBox(self.groupBox)
+        self.chk_do_calcs.setObjectName("chk_do_calcs")
+        self.verticalLayout.addWidget(self.chk_do_calcs)
         self.verticalLayout_3.addWidget(self.groupBox)
         self.btn_run_preproc = QtWidgets.QPushButton(self.widget)
         self.btn_run_preproc.setObjectName("btn_run_preproc")
@@ -90,6 +77,8 @@ class Ui_dialog(object):
         self.chk_optimize_trace.setToolTip(_translate("dialog", "Non disponible"))
         self.chk_optimize_trace.setText(_translate("dialog", "Optimiser le déplacement entre les traçés"))
         self.chk_del_comments.setText(_translate("dialog", "Supprimer les commentaires"))
+        self.chk_do_calcs.setToolTip(_translate("dialog", "Non disponible"))
+        self.chk_do_calcs.setText(_translate("dialog", "Effectuer les calculs"))
         self.btn_run_preproc.setText(_translate("dialog", "Lancer le préprocesseur"))
         self.groupBox_2.setTitle(_translate("dialog", "Sortie"))
 

@@ -63,6 +63,16 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QCheckBox" name="chk_do_calcs">
+              <property name="toolTip">
+               <string>Non disponible</string>
+              </property>
+              <property name="text">
+               <string>Effectuer les calculs</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
          </item>

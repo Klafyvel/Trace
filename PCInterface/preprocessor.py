@@ -33,6 +33,8 @@ class PreprocessorDialog(QDialog, Ui_dialog):
         self.buttonBox.accepted.connect(self.accept)
         self.buttonBox.rejected.connect(self.cancel)
 
+        self.gcode_vars = {}
+
     @pyqtSlot()
     def run_preprocessor(self):
         self.remove_useless()
@@ -53,6 +55,11 @@ class PreprocessorDialog(QDialog, Ui_dialog):
                 r += '\n'
         self.output.setText(r)
         self.gcode = r
+
+    def run_calcs(self):
+        # for i in parse_instr(self.gcode):
+        #     if ''
+        pass
 
     @pyqtSlot()
     def cancel(self):
