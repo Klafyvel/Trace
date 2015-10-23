@@ -12,12 +12,13 @@
 #define Z 2
 #define I 3
 #define J 4
-#define F 5
+#define K 5
+#define F 6
 
 // Commands settings
 
 #define NB_ARGS 6
-#define NB_AXES 3
+#define NB_AXIS 3
 
 typedef struct Command
 {

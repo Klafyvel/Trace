@@ -11,6 +11,7 @@ Menu::Menu(char titre[], LiquidCrystal* lcd, char bp_haut, char bp_bas, char bp_
     this->bp_haut = bp_haut;
     this->bp_bas = bp_bas;
     this->last_item = 0;
+    this->isShiftRegistered = false;
 
     pinMode(bp_ok, INPUT);
     pinMode(bp_haut, INPUT);
@@ -18,6 +19,23 @@ Menu::Menu(char titre[], LiquidCrystal* lcd, char bp_haut, char bp_bas, char bp_
     digitalWrite(bp_ok, HIGH);
     digitalWrite(bp_haut, HIGH);
     digitalWrite(bp_bas, HIGH);
+
+    if(strlen(titre) <= 100){strcpy(this->titre, titre);}
+}
+Menu::Menu(char titre[], LiquidCrystal* lcd, ShiftRegisteredInput* sri, uint8_t bp_haut, uint8_t bp_bas, uint8_t bp_ok)
+{
+    this->nombreItem = 0; 
+    this->premier = NULL; 
+    this->lcd = lcd;
+    this->lcd->noBlink();
+    this->lcd->noCursor();
+    this->last_item = 0;
+    this->bp_ok = bp_ok;
+    this->bp_haut = bp_haut;
+    this->bp_bas = bp_bas;
+
+    this->isShiftRegistered = true;
+    this->sri = sri;
 
     if(strlen(titre) <= 100){strcpy(this->titre, titre);}
 }
@@ -120,9 +138,19 @@ int Menu::choose()
         bool event = false;
         Menu::print(current);
         while(!event) {
-            if(digitalRead(this->bp_bas)==LOW) { current ++;event = true;}
-            if(digitalRead(this->bp_haut)==LOW) { current --;event = true;}
-            if(digitalRead(this->bp_ok)==LOW) { choix = current;event = true;}
+            if(this->isShiftRegistered)
+            {
+               int input = this->sri->read();
+               dvar(input);
+               if(input&(1<<this->bp_bas)) {current ++;event=true;}
+               if(input&(1<<this->bp_haut)) {current --;event=true;}
+               if(input&(1<<this->bp_ok)) {choix = current;event=true;}
+            }
+            else {
+                if(digitalRead(this->bp_bas)==LOW) { current ++;event = true;}
+                if(digitalRead(this->bp_haut)==LOW) { current --;event = true;}
+                if(digitalRead(this->bp_ok)==LOW) { choix = current;event = true;}
+            }
             current = (this->nombreItem + 1 + current)%(this->nombreItem+1);
         }
         delay(200);

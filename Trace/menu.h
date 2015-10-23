@@ -6,6 +6,9 @@
 
 #include <string.h>
 
+#include "shiftRegisteredInput.h"
+#include "communication.h"
+
 #define MAX_ITEM 10
 #define MAX_LABEL_LONG 20
 
@@ -29,6 +32,7 @@ class Menu
 public:
     Menu(char titre[], LiquidCrystal* lcd, \
          char bp_haut, char bp_bas, char bp_ok);
+    Menu(char titre[], LiquidCrystal* lcd, ShiftRegisteredInput* sri, uint8_t bp_haut, uint8_t bp_bas, uint8_t bp_ok);
     ~Menu();
     int addSubMenu(Menu* submenu, const char nom[]);
     int addItem(callback fonction, const char nom[]);
@@ -48,5 +52,8 @@ private:
     char bp_bas;
     char bp_ok;
     int last_item;
+
+    bool isShiftRegistered;
+    ShiftRegisteredInput* sri;
 };
 #endif
