@@ -346,6 +346,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def preprocessor(self):
+        self.preproc.output.setText('')
         self.preproc.gcode = self.code_edit.toPlainText()
         self.preproc.show()
 
