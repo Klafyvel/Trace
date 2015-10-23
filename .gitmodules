@@ -1,3 +1,6 @@
 [submodule "Trace/ShiftRegister"]
 	path = Trace/ShiftRegister
 	url = https://github.com/Klafyvel/ShiftRegister.git
+[submodule "Trace/Listuino"]
+	path = Trace/Listuino
+	url = https://github.com/Klafyvel/Listuino.git
