@@ -10,3 +10,5 @@ if __name__ == '__main__':
 
     window.show()
     app.exec()
+    del window
+    del app
