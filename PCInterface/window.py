@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import serial
+from time import sleep
 
 from math import asin, acos, sqrt, pi
 
@@ -80,7 +81,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.preproc = PreprocessorDialog("", parent=self)
         self.preproc.accepted.connect(self.get_preprocessor_result)
 
+        self.chk_enableFakeSerial.stateChanged.connect(self.manage_fake_serial)
+
         self.list_serials()
+
+    @pyqtSlot()
+    def manage_fake_serial(self):
+        if self.chk_enableFakeSerial.isChecked():
+            self.trueSerialContainer.setEnabled(False)
+        else:
+            self.trueSerialContainer.setEnabled(True)
 
     @pyqtSlot()
     def check_serial_communication(self):
@@ -151,6 +161,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                  "Le port série n'a pas pu être ouvert.")
 
     def send_user_cmd(self):
+        if self.chk_enableFakeSerial.isChecked():
+            self.print(self.command_edit.text(), self.USER_PRINT)
+            self.command_edit.setText("")
+            return
         if not self.serial.isOpen():
             QMessageBox.critical(self, "Port série",
                                  "Veuillez ouvrir un port série.")
@@ -163,13 +177,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def manual_mode(self):
         if self.send_manual_cmd.isChecked():
-            if not self.serial.isOpen():
+            if self.chk_enableFakeSerial.isChecked():
+                pass
+            elif not self.serial.isOpen():
                 QMessageBox.critical(self, "Port série",
                                      "Veuillez ouvrir un port série.")
                 self.send_manual_cmd.setChecked(False)
                 return
+            else:
+                self.serial.write(bytes('prgm', encoding="utf-8"))
+
             self.print("Start manual mode", self.INFO_PRINT)
-            self.serial.write(bytes('prgm', encoding="utf-8"))
             self.grp_plan.setEnabled(True)
             self.grp_z.setEnabled(True)
             self.btn_go_to_zero.setEnabled(True)
@@ -226,27 +244,32 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def send_file(self):
-        if not self.serial.isOpen():
+        if self.chk_enableFakeSerial.isChecked():
+            gcode = self.code_edit.toPlainText().split('\n')
+            for c in gcode:
+                self.print(c, self.PRGM_PRINT)
+                self.print('OK\n', self.MACHINE_PRINT)
+        elif not self.serial.isOpen():
             QMessageBox.critical(self, "Port série",
                                  "Veuillez ouvrir un port série.")
-            return
-        self.send_manual_cmd.setChecked(False)
-        self.serial.write(bytes('prgm', encoding="utf-8"))
-        gcode = self.code_edit.toPlainText().split('\n')
-        # no timeout while we are working, because we don't know how many time
-        # needs the machine.
-        self.serial.timeout = None
-        for c in gcode:
-            self.print(c, self.PRGM_PRINT)
-            self.serial.write(bytes(c + '\n', "utf-8"))
-            txt = self.serial.readline().decode('ascii')
-            self.print(txt, self.MACHINE_PRINT)
-            if 'OK' not in txt:
-                QMessageBox.critical(self, "Port série",
-                                     "Erreur sur la machine.")
-                break
-        # serial needs timeout in seconds
-        self.serial.timeout = self.timeout_read.value() / 1000
+        else:
+            self.send_manual_cmd.setChecked(False)
+            self.serial.write(bytes('prgm', encoding="utf-8"))
+            gcode = self.code_edit.toPlainText().split('\n')
+            # no timeout while we are working, because we don't know how many time
+            # needs the machine.
+            self.serial.timeout = None
+            for c in gcode:
+                self.print(c, self.PRGM_PRINT)
+                self.serial.write(bytes(c + '\n', "utf-8"))
+                txt = self.serial.readline().decode('ascii')
+                self.print(txt, self.MACHINE_PRINT)
+                if 'OK' not in txt:
+                    QMessageBox.critical(self, "Port série",
+                                         "Erreur sur la machine.")
+                    break
+            # serial needs timeout in seconds
+            self.serial.timeout = self.timeout_read.value() / 1000
         QMessageBox.information(self, "Port série", "Fin de l'usinage.")
 
     @pyqtSlot()

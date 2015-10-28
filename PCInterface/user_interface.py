@@ -1,19 +1,3 @@
-# Trace
-# Copyright (C) 2015  Hugo LEVY-FALK
-# 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>
-
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'window.ui'
@@ -166,12 +150,20 @@ class Ui_MainWindow(object):
         self.tab_serie.setObjectName("tab_serie")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.tab_serie)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.chk_enableFakeSerial = QtWidgets.QCheckBox(self.tab_serie)
+        self.chk_enableFakeSerial.setObjectName("chk_enableFakeSerial")
+        self.verticalLayout_3.addWidget(self.chk_enableFakeSerial)
+        self.trueSerialContainer = QtWidgets.QWidget(self.tab_serie)
+        self.trueSerialContainer.setObjectName("trueSerialContainer")
+        self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.trueSerialContainer)
+        self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_10.setObjectName("verticalLayout_10")
         self.serial_settings = QtWidgets.QFormLayout()
         self.serial_settings.setObjectName("serial_settings")
-        self.label = QtWidgets.QLabel(self.tab_serie)
+        self.label = QtWidgets.QLabel(self.trueSerialContainer)
         self.label.setObjectName("label")
         self.serial_settings.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label)
-        self.baudrate = QtWidgets.QComboBox(self.tab_serie)
+        self.baudrate = QtWidgets.QComboBox(self.trueSerialContainer)
         self.baudrate.setObjectName("baudrate")
         self.baudrate.addItem("")
         self.baudrate.addItem("")
@@ -185,36 +177,37 @@ class Ui_MainWindow(object):
         self.baudrate.addItem("")
         self.baudrate.addItem("")
         self.serial_settings.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.baudrate)
-        self.portSRieLabel = QtWidgets.QLabel(self.tab_serie)
+        self.portSRieLabel = QtWidgets.QLabel(self.trueSerialContainer)
         self.portSRieLabel.setObjectName("portSRieLabel")
         self.serial_settings.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.portSRieLabel)
-        self.serial_ports_list = QtWidgets.QComboBox(self.tab_serie)
+        self.serial_ports_list = QtWidgets.QComboBox(self.trueSerialContainer)
         self.serial_ports_list.setObjectName("serial_ports_list")
         self.serial_settings.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.serial_ports_list)
-        self.btn_serial_ports_list = QtWidgets.QPushButton(self.tab_serie)
+        self.btn_serial_ports_list = QtWidgets.QPushButton(self.trueSerialContainer)
         self.btn_serial_ports_list.setObjectName("btn_serial_ports_list")
         self.serial_settings.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.btn_serial_ports_list)
-        self.label_5 = QtWidgets.QLabel(self.tab_serie)
+        self.label_5 = QtWidgets.QLabel(self.trueSerialContainer)
         self.label_5.setObjectName("label_5")
         self.serial_settings.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_5)
-        self.timeout_read = QtWidgets.QSpinBox(self.tab_serie)
+        self.timeout_read = QtWidgets.QSpinBox(self.trueSerialContainer)
         self.timeout_read.setMaximum(1000)
         self.timeout_read.setProperty("value", 10)
         self.timeout_read.setObjectName("timeout_read")
         self.serial_settings.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.timeout_read)
-        self.utiliserFichierLogTxtLabel = QtWidgets.QLabel(self.tab_serie)
+        self.utiliserFichierLogTxtLabel = QtWidgets.QLabel(self.trueSerialContainer)
         self.utiliserFichierLogTxtLabel.setObjectName("utiliserFichierLogTxtLabel")
         self.serial_settings.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.utiliserFichierLogTxtLabel)
-        self.use_log = QtWidgets.QCheckBox(self.tab_serie)
+        self.use_log = QtWidgets.QCheckBox(self.trueSerialContainer)
         self.use_log.setObjectName("use_log")
         self.serial_settings.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.use_log)
-        self.verticalLayout_3.addLayout(self.serial_settings)
-        self.btn_connect = QtWidgets.QPushButton(self.tab_serie)
+        self.verticalLayout_10.addLayout(self.serial_settings)
+        self.btn_connect = QtWidgets.QPushButton(self.trueSerialContainer)
         icon7 = QtGui.QIcon()
         icon7.addPixmap(QtGui.QPixmap("connect.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_connect.setIcon(icon7)
         self.btn_connect.setObjectName("btn_connect")
-        self.verticalLayout_3.addWidget(self.btn_connect)
+        self.verticalLayout_10.addWidget(self.btn_connect)
+        self.verticalLayout_3.addWidget(self.trueSerialContainer)
         self.tabWidget.addTab(self.tab_serie, "")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
@@ -369,6 +362,7 @@ class Ui_MainWindow(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.label_4.setText(_translate("MainWindow", "Commande :"))
         self.btn_command.setText(_translate("MainWindow", "Envoyer"))
+        self.chk_enableFakeSerial.setText(_translate("MainWindow", "Simuler un port série"))
         self.label.setText(_translate("MainWindow", "Baudrate"))
         self.baudrate.setItemText(0, _translate("MainWindow", "300"))
         self.baudrate.setItemText(1, _translate("MainWindow", "1200"))
